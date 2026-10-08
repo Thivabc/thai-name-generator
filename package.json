@@ -1,0 +1,19 @@
+{
+  "name": "thai-name-generator",
+  "version": "1.0.0",
+  "description": "Thai Name Generator - สุ่มชื่อไทยและชื่ออังกฤษ",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thivabc/thai-name-generator.git"
+  },
+  "keywords": [
+    "thai",
+    "name",
+    "generator",
+    "random",
+    "names"
+  ],
+  "author": "Thivabc",
+  "license": "MIT"
+}
