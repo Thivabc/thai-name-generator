@@ -1,1249 +1,1160 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Thai Name Generator</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans Thai",
+        sans-serif;
+
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          #f9ddf5 0%,
+          transparent 38%
+        ),
+        radial-gradient(
+          circle at top right,
+          #e2d9ff 0%,
+          transparent 38%
+        ),
+        linear-gradient(
+          135deg,
+          #fff5fb,
+          #f5f1ff
+        );
+
+      color: #293142;
+
+      padding: 40px 20px 70px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
 
-<meta charset="UTF-8">
+    .logo {
+      width: 74px;
+      height: 74px;
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+      margin: 0 auto 18px;
 
-<title>Thai Name Generator</title>
+      border-radius: 22px;
 
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="shortcut icon" href="favicon.svg">
-<link rel="apple-touch-icon" href="favicon.svg">
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
+      font-size: 38px;
+      color: white;
 
-<style>
+      background:
+        linear-gradient(
+          135deg,
+          #7c3aed,
+          #ec4899
+        );
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+      box-shadow:
+        0 12px 30px
+        rgba(124, 58, 237, .25);
+    }
 
+    h1 {
+      font-size: 50px;
+      font-weight: 850;
+      line-height: 1.1;
 
-body {
+      margin-bottom: 14px;
 
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Noto Sans Thai",
-    sans-serif;
+      background:
+        linear-gradient(
+          90deg,
+          #70219b,
+          #b82291
+        );
 
-  min-height: 100vh;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  background:
+    .subtitle {
+      color: #747887;
+      font-size: 18px;
+    }
 
-    radial-gradient(
-      circle at top left,
-      #f9ddf5 0%,
-      transparent 38%
-    ),
+    /* =========================
+       MAIN PANEL
+    ========================= */
 
-    radial-gradient(
-      circle at top right,
-      #e2d9ff 0%,
-      transparent 38%
-    ),
+    .panel {
+      background: rgba(255, 255, 255, .96);
 
-    linear-gradient(
-      135deg,
-      #fff5fb,
-      #f5f1ff
-    );
+      border-radius: 28px;
 
-  color: #293142;
+      padding: 32px;
 
-  padding: 40px 20px 70px;
-}
+      box-shadow:
+        0 25px 70px
+        rgba(75, 45, 120, .13);
+    }
 
+    /* =========================
+       FORM
+    ========================= */
 
-.container {
+    .form-grid {
+      display: grid;
 
-  max-width: 1200px;
+      grid-template-columns:
+        1fr 300px;
 
-  margin: auto;
+      gap: 22px;
 
-}
+      margin-bottom: 20px;
+    }
 
+    label {
+      display: block;
 
-/* =========================
-   HEADER
-========================= */
+      font-size: 17px;
+      font-weight: 750;
 
-header {
+      margin-bottom: 10px;
+    }
 
-  text-align: center;
+    .type-selector {
+      display: grid;
 
-  margin-bottom: 35px;
+      grid-template-columns:
+        1fr 1fr;
 
-}
+      background: #f0edff;
 
+      border: 1px solid #e3dbff;
 
-.logo {
+      padding: 6px;
 
-  width: 74px;
+      border-radius: 18px;
+    }
 
-  height: 74px;
+    .type-btn {
+      border: none;
 
-  margin: 0 auto 18px;
+      background: transparent;
 
-  border-radius: 22px;
+      border-radius: 13px;
 
-  display: flex;
+      padding: 14px;
 
-  align-items: center;
+      font-size: 17px;
+      font-weight: 750;
 
-  justify-content: center;
+      color: #747989;
 
-  font-size: 38px;
+      cursor: pointer;
 
-  color: white;
+      transition: .2s;
+    }
 
-  background:
-    linear-gradient(
-      135deg,
-      #7c3aed,
-      #ec4899
-    );
+    .type-btn.active {
+      background: white;
 
-  box-shadow:
-    0 12px 30px
-    rgba(124,58,237,.25);
+      color: #5927a4;
 
-}
+      box-shadow:
+        0 3px 12px
+        rgba(60, 40, 100, .10);
+    }
 
+    #count {
+      width: 100%;
+      height: 64px;
 
-h1 {
+      border-radius: 18px;
 
-  font-size: 50px;
+      border: 1px solid #dedfe5;
 
-  font-weight: 850;
+      padding: 0 18px;
 
-  line-height: 1.1;
+      font-size: 18px;
 
-  margin-bottom: 14px;
+      outline: none;
+    }
 
-  background:
-    linear-gradient(
-      90deg,
-      #70219b,
-      #b82291
-    );
+    #count:focus {
+      border-color: #9347df;
+    }
 
-  -webkit-background-clip: text;
+    #generateBtn {
+      width: 100%;
+      height: 66px;
 
-  -webkit-text-fill-color: transparent;
+      border: none;
 
-}
+      border-radius: 17px;
 
+      background:
+        linear-gradient(
+          90deg,
+          #7c3aed,
+          #ed3b96
+        );
 
-.subtitle {
+      color: white;
 
-  color: #747887;
+      font-size: 19px;
+      font-weight: 800;
 
-  font-size: 18px;
+      cursor: pointer;
 
-}
+      box-shadow:
+        0 12px 28px
+        rgba(139, 57, 220, .25);
 
+      transition: .2s;
+    }
 
-/* =========================
-   MAIN PANEL
-========================= */
+    #generateBtn:hover {
+      transform: translateY(-1px);
+    }
 
-.panel {
+    /* =========================
+       RESULTS
+    ========================= */
 
-  background: rgba(255,255,255,.96);
+    .results-section {
+      margin-top: 34px;
+    }
 
-  border-radius: 28px;
+    .results-header {
+      display: flex;
 
-  padding: 32px;
+      align-items: center;
 
-  box-shadow:
-    0 25px 70px
-    rgba(75,45,120,.13);
+      justify-content: space-between;
 
-}
+      margin-bottom: 20px;
+    }
 
+    .results-header h2 {
+      font-size: 30px;
+      font-weight: 850;
+    }
 
-/* =========================
-   FORM
-========================= */
+    .count-badge {
+      background: #eee6ff;
 
-.form-grid {
+      color: #5c25a9;
 
-  display: grid;
+      padding: 10px 18px;
 
-  grid-template-columns:
-    1fr 300px;
+      border-radius: 30px;
 
-  gap: 22px;
+      font-weight: 800;
+    }
 
-  margin-bottom: 20px;
+    #results {
+      display: grid;
 
-}
+      grid-template-columns:
+        repeat(2, 1fr);
 
+      gap: 16px;
+    }
 
-label {
+    /* =========================
+       NAME CARD
+    ========================= */
 
-  display: block;
+    .name-card {
+      background: white;
 
-  font-size: 17px;
+      border:
+        1px solid #e0e2e8;
 
-  font-weight: 750;
+      border-radius: 20px;
 
-  margin-bottom: 10px;
+      padding: 20px;
 
-}
+      transition: .2s;
+    }
 
+    .name-card:hover {
+      border-color: #d0c4f7;
 
-.type-selector {
+      box-shadow:
+        0 8px 25px
+        rgba(70, 40, 120, .08);
+    }
 
-  display: grid;
+    .name-top {
+      display: flex;
 
-  grid-template-columns: 1fr 1fr;
+      justify-content:
+        space-between;
 
-  background: #f0edff;
+      align-items: center;
 
-  border: 1px solid #e3dbff;
+      gap: 12px;
 
-  padding: 6px;
+      margin-bottom: 18px;
+    }
 
-  border-radius: 18px;
+    .full-name {
+      font-size: 23px;
 
-}
+      font-weight: 850;
 
+      color: #293142;
 
-.type-btn {
+      line-height: 1.3;
+    }
 
-  border: none;
+    .copy-buttons {
+      display: flex;
 
-  background: transparent;
+      gap: 8px;
+    }
 
-  border-radius: 13px;
+    /* =========================
+       COPY BUTTON
+    ========================= */
 
-  padding: 14px;
+    .copy-btn,
+    .copy-id {
+      border:
+        1px solid #dfe2e7;
 
-  font-size: 17px;
+      background: white;
 
-  font-weight: 750;
+      border-radius: 9px;
 
-  color: #747989;
+      padding: 9px 13px;
 
-  cursor: pointer;
+      font-size: 13px;
 
-}
+      font-weight: 750;
 
+      white-space: nowrap;
 
-.type-btn.active {
+      cursor: pointer;
 
-  background: white;
+      transition: .2s;
+    }
 
-  color: #5927a4;
+    .copy-btn:hover,
+    .copy-id:hover {
+      background: #faf9ff;
+    }
 
-  box-shadow:
-    0 3px 12px
-    rgba(60,40,100,.10);
+    /* =========================
+       COPIED STATE
+    ========================= */
 
-}
+    .copy-btn.copied,
+    .copy-id.copied {
 
+      color: #059669;
 
-#count {
+      border-color: #6ee7b7;
 
-  width: 100%;
+      background: #f0fdf9;
 
-  height: 64px;
+    }
 
-  border-radius: 18px;
+    /* =========================
+       ID ROW
+    ========================= */
 
-  border: 1px solid #dedfe5;
+    .id-row {
+      display: flex;
 
-  padding: 0 18px;
+      align-items: center;
 
-  font-size: 18px;
+      justify-content:
+        space-between;
 
-  outline: none;
+      gap: 12px;
 
-}
+      background: #f8f9fb;
 
+      border:
+        1px solid #e1e4e9;
 
-#count:focus {
+      border-radius: 13px;
 
-  border-color: #9347df;
+      padding: 12px 14px;
+    }
 
-}
+    .id-text {
+      color: #747b89;
 
+      font-size: 15px;
 
-#generateBtn {
+      font-weight: 600;
+    }
 
-  width: 100%;
+    .id-text strong {
+      color: #293142;
 
-  height: 66px;
+      font-size: 17px;
 
-  border: none;
+      letter-spacing: .6px;
+    }
 
-  border-radius: 17px;
+    /* =========================
+       MOBILE
+    ========================= */
 
-  background:
-    linear-gradient(
-      90deg,
-      #7c3aed,
-      #ed3b96
-    );
+    @media (max-width: 800px) {
 
-  color: white;
+      body {
+        padding:
+          25px 12px 50px;
+      }
 
-  font-size: 19px;
+      h1 {
+        font-size: 36px;
+      }
 
-  font-weight: 800;
+      .panel {
+        padding: 20px;
+      }
 
-  cursor: pointer;
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
 
-  box-shadow:
-    0 12px 28px
-    rgba(139,57,220,.25);
+      #results {
+        grid-template-columns: 1fr;
+      }
 
-}
+    }
 
+    @media (max-width: 520px) {
 
-#generateBtn:hover {
+      .name-top {
+        flex-direction: column;
 
-  transform: translateY(-1px);
+        align-items: stretch;
+      }
 
-}
+      .copy-buttons {
+        width: 100%;
+      }
 
+      .copy-btn {
+        flex: 1;
+      }
 
-/* =========================
-   RESULTS
-========================= */
+      .id-row {
+        flex-direction: column;
 
-.results-section {
+        align-items: stretch;
+      }
 
-  margin-top: 34px;
+      .copy-id {
+        width: 100%;
+      }
 
-}
+    }
 
-
-.results-header {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-bottom: 20px;
-
-}
-
-
-.results-header h2 {
-
-  font-size: 30px;
-
-  font-weight: 850;
-
-}
-
-
-.count-badge {
-
-  background: #eee6ff;
-
-  color: #5c25a9;
-
-  padding: 10px 18px;
-
-  border-radius: 30px;
-
-  font-weight: 800;
-
-}
-
-
-/* =========================
-   CARDS
-========================= */
-
-#results {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 16px;
-
-}
-
-
-.name-card {
-
-  background: white;
-
-  border:
-    1px solid #e0e2e8;
-
-  border-radius: 20px;
-
-  padding: 20px;
-
-}
-
-
-.name-card:hover {
-
-  border-color: #d0c4f7;
-
-  box-shadow:
-    0 8px 25px
-    rgba(70,40,120,.08);
-
-}
-
-
-.name-top {
-
-  display: flex;
-
-  justify-content:
-    space-between;
-
-  align-items: center;
-
-  gap: 12px;
-
-  margin-bottom: 18px;
-
-}
-
-
-.full-name {
-
-  font-size: 23px;
-
-  font-weight: 850;
-
-  color: #293142;
-
-  line-height: 1.3;
-
-}
-
-
-.copy-buttons {
-
-  display: flex;
-
-  gap: 8px;
-
-}
-
-
-.copy-btn {
-
-  border:
-    1px solid #dfe2e7;
-
-  background: white;
-
-  border-radius: 9px;
-
-  padding: 9px 12px;
-
-  font-size: 13px;
-
-  font-weight: 750;
-
-  white-space: nowrap;
-
-  cursor: pointer;
-
-}
-
-
-.copy-btn:hover {
-
-  background: #faf9ff;
-
-}
-
-
-/* =========================
-   CITIZEN ID
-========================= */
-
-.id-row {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content:
-    space-between;
-
-  gap: 12px;
-
-  background: #f8f9fb;
-
-  border:
-    1px solid #e1e4e9;
-
-  border-radius: 13px;
-
-  padding: 12px 14px;
-
-}
-
-
-.id-text {
-
-  color: #747b89;
-
-  font-size: 15px;
-
-  font-weight: 600;
-
-}
-
-
-.id-text strong {
-
-  color: #293142;
-
-  font-size: 17px;
-
-  letter-spacing: .6px;
-
-}
-
-
-.copy-id {
-
-  border:
-    1px solid #dfe2e7;
-
-  background: white;
-
-  border-radius: 9px;
-
-  padding: 9px 13px;
-
-  font-size: 13px;
-
-  font-weight: 750;
-
-  white-space: nowrap;
-
-  cursor: pointer;
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 800px) {
-
-  body {
-
-    padding:
-      25px 12px 50px;
-
-  }
-
-
-  h1 {
-
-    font-size: 36px;
-
-  }
-
-
-  .panel {
-
-    padding: 20px;
-
-  }
-
-
-  .form-grid {
-
-    grid-template-columns: 1fr;
-
-  }
-
-
-  #results {
-
-    grid-template-columns: 1fr;
-
-  }
-
-}
-
-
-@media (max-width: 520px) {
-
-  .name-top {
-
-    flex-direction: column;
-
-    align-items: stretch;
-
-  }
-
-
-  .copy-buttons {
-
-    width: 100%;
-
-  }
-
-
-  .copy-btn {
-
-    flex: 1;
-
-  }
-
-
-  .id-row {
-
-    flex-direction: column;
-
-    align-items: stretch;
-
-  }
-
-
-  .copy-id {
-
-    width: 100%;
-
-  }
-
-}
-
-</style>
+  </style>
 
 </head>
 
 
 <body>
 
+  <div class="container">
 
-<div class="container">
+    <!-- =========================
+         HEADER
+    ========================= -->
 
+    <header>
 
-<header>
-
-  <div class="logo">
-    ✦
-  </div>
-
-  <h1>
-    Thai Name Generator
-  </h1>
-
-  <p class="subtitle">
-    สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม
-    พร้อมเลขบัตรประชาชนจำลอง
-  </p>
-
-</header>
-
-
-<main class="panel">
-
-
-  <div class="form-grid">
-
-
-    <div>
-
-      <label>
-        ประเภทชื่อหลัก
-      </label>
-
-      <div class="type-selector">
-
-        <button
-          class="type-btn active"
-          data-type="thai"
-        >
-          🇹🇭 &nbsp;ชื่อไทย
-        </button>
-
-        <button
-          class="type-btn"
-          data-type="english"
-        >
-          🇬🇧 &nbsp;English
-        </button>
-
+      <div class="logo">
+        ✦
       </div>
 
-    </div>
+      <h1>
+        Thai Name Generator
+      </h1>
 
+      <p class="subtitle">
+        สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม
+        พร้อมเลขบัตรประชาชนจำลอง
+      </p>
 
-    <div>
+    </header>
 
-      <label>
-        จำนวนชื่อ
-      </label>
 
-      <input
-        id="count"
-        type="number"
-        min="1"
-        max="100"
-        value="10"
-      >
+    <!-- =========================
+         MAIN
+    ========================= -->
 
-    </div>
+    <main class="panel">
 
 
-  </div>
+      <!-- FORM -->
 
+      <div class="form-grid">
 
-  <button id="generateBtn">
-    ✨ สุ่มชื่อ
-  </button>
 
+        <div>
 
-  <section class="results-section">
+          <label>
+            ประเภทชื่อหลัก
+          </label>
 
+          <div class="type-selector">
 
-    <div class="results-header">
+            <button
+              class="type-btn active"
+              data-type="thai"
+            >
+              🇹🇭 &nbsp;ชื่อไทย
+            </button>
 
-      <h2>
-        ชื่อที่สร้างขึ้น
-      </h2>
+            <button
+              class="type-btn"
+              data-type="english"
+            >
+              🇬🇧 &nbsp;English
+            </button>
 
-      <span
-        id="countBadge"
-        class="count-badge"
-      >
-        10 ชื่อ
-      </span>
+          </div>
 
-    </div>
+        </div>
 
 
-    <div id="results"></div>
+        <div>
 
+          <label>
+            จำนวนชื่อ
+          </label>
 
-  </section>
+          <input
+            id="count"
+            type="number"
+            min="1"
+            max="100"
+            value="10"
+          >
 
+        </div>
 
-</main>
-
-
-</div>
-
-
-<script type="module">
-
-
-import {
-
-  thaiNames,
-  englishNames,
-  thaiSurnames,
-  englishSurnames
-
-} from "./data/names.js";
-
-
-let currentType = "thai";
-
-
-const countInput =
-  document.getElementById("count");
-
-
-const generateBtn =
-  document.getElementById("generateBtn");
-
-
-const results =
-  document.getElementById("results");
-
-
-const countBadge =
-  document.getElementById("countBadge");
-
-
-
-/* =========================
-   RANDOM
-========================= */
-
-function randomItem(array) {
-
-  return array[
-    Math.floor(
-      Math.random() * array.length
-    )
-  ];
-
-}
-
-
-
-/* =========================
-   CITIZEN ID
-========================= */
-
-function generateCitizenId() {
-
-  const digits = [];
-
-
-  /*
-    หลักที่ 1
-    1-8
-  */
-
-  digits.push(
-    Math.floor(
-      Math.random() * 8
-    ) + 1
-  );
-
-
-  /*
-    หลักที่ 2-12
-  */
-
-  for (
-    let i = 1;
-    i < 12;
-    i++
-  ) {
-
-    digits.push(
-      Math.floor(
-        Math.random() * 10
-      )
-    );
-
-  }
-
-
-  /*
-    Checksum หลักที่ 13
-
-    (หลัก1 × 13)
-    + (หลัก2 × 12)
-    ...
-    + (หลัก12 × 2)
-
-    แล้วคำนวณ check digit
-  */
-
-  let sum = 0;
-
-
-  for (
-    let i = 0;
-    i < 12;
-    i++
-  ) {
-
-    sum +=
-      digits[i] *
-      (13 - i);
-
-  }
-
-
-  const checksum =
-    (11 - (sum % 11)) % 10;
-
-
-  digits.push(checksum);
-
-
-  return digits.join("");
-
-}
-
-
-
-/* =========================
-   GENERATE PROFILE
-========================= */
-
-function generateProfile() {
-
-
-  const gender =
-    Math.random() < 0.5
-      ? "male"
-      : "female";
-
-
-  let firstName;
-  let surname;
-
-
-  if (
-    currentType === "thai"
-  ) {
-
-    firstName =
-      randomItem(
-        thaiNames[gender]
-      );
-
-    surname =
-      randomItem(
-        thaiSurnames
-      );
-
-  } else {
-
-    firstName =
-      randomItem(
-        englishNames[gender]
-      );
-
-    surname =
-      randomItem(
-        englishSurnames
-      );
-
-  }
-
-
-  return {
-
-    firstName,
-
-    surname,
-
-    citizenId:
-      generateCitizenId()
-
-  };
-
-}
-
-
-
-/* =========================
-   COPY
-========================= */
-
-async function copyText(
-  text,
-  button
-) {
-
-  const oldText =
-    button.textContent;
-
-
-  try {
-
-    await navigator
-      .clipboard
-      .writeText(text);
-
-  } catch {
-
-    const textarea =
-      document.createElement(
-        "textarea"
-      );
-
-    textarea.value = text;
-
-    document.body.appendChild(
-      textarea
-    );
-
-    textarea.select();
-
-    document.execCommand(
-      "copy"
-    );
-
-    textarea.remove();
-
-  }
-
-
-  button.textContent =
-    "✓ คัดลอกแล้ว";
-
-
-  setTimeout(
-    () => {
-
-      button.textContent =
-        oldText;
-
-    },
-    1000
-  );
-
-}
-
-
-
-/* =========================
-   CREATE CARD
-========================= */
-
-function createCard(
-  profile,
-  index
-) {
-
-
-  const card =
-    document.createElement(
-      "div"
-    );
-
-
-  card.className =
-    "name-card";
-
-
-  const fullName =
-    `${profile.firstName} ${profile.surname}`;
-
-
-  card.innerHTML = `
-
-    <div class="name-top">
-
-      <div class="full-name">
-
-        ${fullName}
 
       </div>
 
 
-      <div class="copy-buttons">
+      <!-- GENERATE BUTTON -->
 
-        <button
-          class="copy-btn"
-          data-value="${profile.firstName}"
-        >
-          คัดลอกชื่อ
-        </button>
-
-
-        <button
-          class="copy-btn"
-          data-value="${profile.surname}"
-        >
-          คัดลอกนามสกุล
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="id-row">
-
-      <div class="id-text">
-
-        เลขบัตรประชาชน:
-
-        <strong>
-          ${profile.citizenId}
-        </strong>
-
-      </div>
-
-
-      <button
-        class="copy-id"
-        data-value="${profile.citizenId}"
-      >
-        คัดลอกเลขบัตร
+      <button id="generateBtn">
+        ✨ สุ่มชื่อ
       </button>
 
-    </div>
 
-  `;
+      <!-- RESULTS -->
+
+      <section class="results-section">
 
 
-  card
-    .querySelectorAll(
-      "[data-value]"
-    )
-    .forEach(button => {
+        <div class="results-header">
 
-      button.addEventListener(
-        "click",
-        () => {
+          <h2>
+            Generated Names
+          </h2>
 
-          copyText(
-            button.dataset.value,
-            button
-          );
+          <span
+            id="countBadge"
+            class="count-badge"
+          >
+            10 names
+          </span>
 
-        }
+        </div>
+
+
+        <div id="results"></div>
+
+
+      </section>
+
+
+    </main>
+
+
+  </div>
+
+
+  <script type="module">
+
+    import {
+      thaiNames,
+      englishNames,
+      thaiSurnames,
+      englishSurnames
+    } from "./data/names.js";
+
+
+    let currentType = "thai";
+
+
+    const countInput =
+      document.getElementById("count");
+
+
+    const generateBtn =
+      document.getElementById("generateBtn");
+
+
+    const results =
+      document.getElementById("results");
+
+
+    const countBadge =
+      document.getElementById("countBadge");
+
+
+    /* =========================
+       RANDOM ITEM
+    ========================= */
+
+    function randomItem(array) {
+
+      return array[
+        Math.floor(
+          Math.random() * array.length
+        )
+      ];
+
+    }
+
+
+    /* =========================
+       CITIZEN ID
+    ========================= */
+
+    function generateCitizenId() {
+
+      const digits = [];
+
+
+      /*
+        First digit:
+        1 - 8
+      */
+
+      digits.push(
+        Math.floor(
+          Math.random() * 8
+        ) + 1
       );
 
-    });
 
+      /*
+        Digits 2 - 12
+      */
 
-  return card;
+      for (
+        let i = 1;
+        i < 12;
+        i++
+      ) {
 
-}
-
-
-
-/* =========================
-   GENERATE
-========================= */
-
-function generateNames() {
-
-
-  let count =
-    parseInt(
-      countInput.value
-    );
-
-
-  if (
-    Number.isNaN(count)
-  ) {
-
-    count = 10;
-
-  }
-
-
-  count =
-    Math.max(
-      1,
-      Math.min(
-        100,
-        count
-      )
-    );
-
-
-  countInput.value =
-    count;
-
-
-  countBadge.textContent =
-    `${count} ชื่อ`;
-
-
-  results.innerHTML =
-    "";
-
-
-  /*
-    สร้างชื่อ
-  */
-
-  for (
-    let i = 0;
-    i < count;
-    i++
-  ) {
-
-    const profile =
-      generateProfile();
-
-
-    results.appendChild(
-      createCard(
-        profile,
-        i + 1
-      )
-    );
-
-  }
-
-}
-
-
-
-/* =========================
-   TYPE BUTTON
-========================= */
-
-document
-  .querySelectorAll(
-    ".type-btn"
-  )
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-
-        document
-          .querySelectorAll(
-            ".type-btn"
+        digits.push(
+          Math.floor(
+            Math.random() * 10
           )
-          .forEach(btn => {
+        );
 
-            btn.classList.remove(
-              "active"
-            );
-
-          });
+      }
 
 
-        button.classList.add(
-          "active"
+      /*
+        Checksum
+
+        digit 1 × 13
+        digit 2 × 12
+        ...
+        digit 12 × 2
+      */
+
+      let sum = 0;
+
+
+      for (
+        let i = 0;
+        i < 12;
+        i++
+      ) {
+
+        sum +=
+          digits[i] *
+          (13 - i);
+
+      }
+
+
+      const checksum =
+        (11 - (sum % 11)) % 10;
+
+
+      digits.push(checksum);
+
+
+      return digits.join("");
+
+    }
+
+
+    /* =========================
+       GENERATE PROFILE
+    ========================= */
+
+    function generateProfile() {
+
+      const gender =
+        Math.random() < 0.5
+          ? "male"
+          : "female";
+
+
+      let firstName;
+      let surname;
+
+
+      if (
+        currentType === "thai"
+      ) {
+
+        firstName =
+          randomItem(
+            thaiNames[gender]
+          );
+
+
+        surname =
+          randomItem(
+            thaiSurnames
+          );
+
+      } else {
+
+        firstName =
+          randomItem(
+            englishNames[gender]
+          );
+
+
+        surname =
+          randomItem(
+            englishSurnames
+          );
+
+      }
+
+
+      return {
+
+        firstName,
+
+        surname,
+
+        citizenId:
+          generateCitizenId()
+
+      };
+
+    }
+
+
+    /* =========================
+       COPY TEXT
+    ========================= */
+
+    async function copyText(
+      text,
+      button
+    ) {
+
+      const oldText =
+        button.textContent;
+
+
+      try {
+
+        await navigator
+          .clipboard
+          .writeText(text);
+
+      } catch {
+
+        const textarea =
+          document.createElement(
+            "textarea"
+          );
+
+
+        textarea.value =
+          text;
+
+
+        document.body.appendChild(
+          textarea
         );
 
 
-        currentType =
-          button.dataset.type;
+        textarea.select();
 
 
-        generateNames();
+        document.execCommand(
+          "copy"
+        );
+
+
+        textarea.remove();
 
       }
+
+
+      /*
+        Add green copied state
+      */
+
+      button.classList.add(
+        "copied"
+      );
+
+
+      /*
+        Different message
+      */
+
+      if (
+        button.classList.contains(
+          "copy-id"
+        )
+      ) {
+
+        button.textContent =
+          "ID Copied ✓";
+
+      } else if (
+        oldText.includes(
+          "Surname"
+        )
+      ) {
+
+        button.textContent =
+          "Surname Copied ✓";
+
+      } else {
+
+        button.textContent =
+          "Name Copied ✓";
+
+      }
+
+
+      /*
+        Return to normal
+        after 1.5 seconds
+      */
+
+      setTimeout(() => {
+
+        button.classList.remove(
+          "copied"
+        );
+
+
+        button.textContent =
+          oldText;
+
+      }, 1500);
+
+    }
+
+
+    /* =========================
+       CREATE CARD
+    ========================= */
+
+    function createCard(profile) {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "name-card";
+
+
+      const fullName =
+        `${profile.firstName} ${profile.surname}`;
+
+
+      card.innerHTML = `
+
+        <div class="name-top">
+
+          <div class="full-name">
+            ${fullName}
+          </div>
+
+
+          <div class="copy-buttons">
+
+            <button
+              class="copy-btn"
+              data-value="${profile.firstName}"
+            >
+              Copy Name
+            </button>
+
+
+            <button
+              class="copy-btn"
+              data-value="${profile.surname}"
+            >
+              Copy Surname
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="id-row">
+
+          <div class="id-text">
+
+            ID Card:
+
+            <strong>
+              ${profile.citizenId}
+            </strong>
+
+          </div>
+
+
+          <button
+            class="copy-id"
+            data-value="${profile.citizenId}"
+          >
+            Copy ID
+          </button>
+
+        </div>
+
+      `;
+
+
+      /*
+        Attach copy events
+      */
+
+      card
+        .querySelectorAll(
+          "[data-value]"
+        )
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              copyText(
+                button.dataset.value,
+                button
+              );
+
+            }
+          );
+
+        });
+
+
+      return card;
+
+    }
+
+
+    /* =========================
+       GENERATE NAMES
+    ========================= */
+
+    function generateNames() {
+
+
+      let count =
+        parseInt(
+          countInput.value
+        );
+
+
+      if (
+        Number.isNaN(count)
+      ) {
+
+        count = 10;
+
+      }
+
+
+      /*
+        Maximum 100
+      */
+
+      count =
+        Math.max(
+          1,
+          Math.min(
+            100,
+            count
+          )
+        );
+
+
+      countInput.value =
+        count;
+
+
+      countBadge.textContent =
+        `${count} names`;
+
+
+      /*
+        Clear old results
+      */
+
+      results.innerHTML =
+        "";
+
+
+      /*
+        Generate cards
+      */
+
+      for (
+        let i = 0;
+        i < count;
+        i++
+      ) {
+
+        const profile =
+          generateProfile();
+
+
+        results.appendChild(
+          createCard(profile)
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       TYPE SELECTOR
+    ========================= */
+
+    document
+      .querySelectorAll(
+        ".type-btn"
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+
+            document
+              .querySelectorAll(
+                ".type-btn"
+              )
+              .forEach(btn => {
+
+                btn.classList.remove(
+                  "active"
+                );
+
+              });
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            currentType =
+              button.dataset.type;
+
+
+            generateNames();
+
+          }
+        );
+
+      });
+
+
+    /* =========================
+       GENERATE BUTTON
+    ========================= */
+
+    generateBtn.addEventListener(
+      "click",
+      generateNames
     );
 
-  });
 
+    /* =========================
+       INITIAL GENERATE
+    ========================= */
 
+    generateNames();
 
-/* =========================
-   GENERATE BUTTON
-========================= */
-
-generateBtn.addEventListener(
-  "click",
-  generateNames
-);
-
-
-
-/* =========================
-   INITIAL
-========================= */
-
-generateNames();
-
-</script>
+  </script>
 
 </body>
 
