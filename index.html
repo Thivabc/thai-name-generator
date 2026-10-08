@@ -1,676 +1,1007 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Thai Name Generator - สุ่มชื่อไทย ชื่ออังกฤษ นามสกุล และข้อมูลจำลอง" />
-  <meta name="theme-color" content="#7c3aed" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Thai Name Generator" />
+
+  <title>Thai Name Generator</title>
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="shortcut icon" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
 
-  <title>Thai Name Generator</title>
-
   <style>
-    :root {
-      --primary: #7c3aed;
-      --primary-dark: #5b21b6;
-      --secondary: #ec4899;
-      --bg: #f8f7ff;
-      --card: rgba(255, 255, 255, 0.94);
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --success: #059669;
-      --shadow: 0 20px 60px rgba(76, 29, 149, 0.12);
-      --shadow-hover: 0 24px 70px rgba(76, 29, 149, 0.16);
-    }
-
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans Thai",
+        sans-serif;
+
       min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: radial-gradient(circle at 10% 10%, rgba(236, 72, 153, 0.14), transparent 30%),
-                  radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.16), transparent 32%),
-                  var(--bg);
-    }
 
-    button, input, select {
-      font: inherit;
-    }
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(244, 194, 255, 0.45),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at top right,
+          rgba(196, 181, 253, 0.45),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #fff1f8 0%,
+          #f8f4ff 50%,
+          #eee8ff 100%
+        );
 
-    button {
-      -webkit-tap-highlight-color: transparent;
+      color: #273043;
+      padding: 40px 20px 60px;
     }
 
     .container {
-      width: min(1050px, calc(100% - 32px));
-      margin: 0 auto;
+      max-width: 1200px;
+      margin: auto;
     }
+
+    /* HEADER */
 
     header {
       text-align: center;
-      padding: 58px 0 30px;
+      margin-bottom: 35px;
     }
 
     .logo {
-      display: inline-flex;
+      width: 74px;
+      height: 74px;
+
+      margin: 0 auto 20px;
+
+      border-radius: 22px;
+
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 64px;
-      height: 64px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      font-size: 30px;
-      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.25);
-      margin-bottom: 16px;
+
+      font-size: 38px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7c3aed,
+          #ec4899
+        );
+
+      box-shadow:
+        0 15px 35px rgba(124, 58, 237, 0.25);
     }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.05;
-      letter-spacing: -1.5px;
-      background: linear-gradient(135deg, #4c1d95, #db2777);
+    header h1 {
+      font-size: 48px;
+      line-height: 1.1;
+      font-weight: 800;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7223a1,
+          #c0258d
+        );
+
       -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
+
+      margin-bottom: 15px;
     }
 
     .subtitle {
-      color: var(--muted);
-      font-size: 17px;
-      margin: 14px auto 0;
-      max-width: 680px;
-      line-height: 1.6;
+      color: #6b7280;
+      font-size: 19px;
+      font-weight: 500;
     }
+
+    /* MAIN PANEL */
 
     .panel {
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.94);
+
       border-radius: 28px;
-      padding: 26px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      transition: box-shadow 0.25s ease;
+
+      padding: 32px;
+
+      box-shadow:
+        0 25px 70px rgba(90, 55, 130, 0.15);
+
+      border: 1px solid rgba(255, 255, 255, 0.8);
     }
 
-    .panel:hover {
-      box-shadow: var(--shadow-hover);
-    }
+    /* FORM */
 
-    .controls {
+    .form-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(130px, 0.55fr);
-      gap: 18px;
-      align-items: end;
-    }
+      grid-template-columns: 1fr 320px;
+      gap: 20px;
 
-    .field {
-      min-width: 0;
+      margin-bottom: 20px;
     }
 
     .field label {
       display: block;
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 9px;
+
+      font-size: 17px;
+      font-weight: 700;
+
+      margin-bottom: 10px;
+      color: #293142;
     }
 
-    .name-type-selector {
+    .type-selector {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      padding: 5px;
-      min-height: 54px;
-      background: #f3f0ff;
-      border: 1px solid #e9e3ff;
-      border-radius: 16px;
+
+      padding: 6px;
+
+      background: #f0edff;
+
+      border: 1px solid #e6ddff;
+
+      border-radius: 18px;
     }
 
-    .type-option {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 44px;
-      border: 0;
-      border-radius: 12px;
+    .type-btn {
+      border: none;
+
       background: transparent;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
-    }
 
-    .type-option:hover {
-      color: var(--primary-dark);
-      background: rgba(255, 255, 255, 0.7);
-    }
+      padding: 14px;
 
-    .type-option:active {
-      transform: scale(0.98);
-    }
+      border-radius: 13px;
 
-    .type-option.active {
-      color: var(--primary-dark);
-      background: white;
-      box-shadow: 0 5px 15px rgba(76, 29, 149, 0.10);
-    }
-
-    .type-flag {
-      font-size: 21px;
-      line-height: 1;
-    }
-
-    .number-field {
-      min-width: 0;
-    }
-
-    input[type="number"] {
-      width: 100%;
-      height: 54px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: white;
-      color: var(--text);
-      padding: 0 15px;
-      font-size: 16px;
-      outline: none;
-      transition: 0.2s ease;
-    }
-
-    input[type="number"]:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
-    }
-
-    .generate-wrapper {
-      grid-column: 1 / -1;
-    }
-
-    .generate-btn {
-      width: 100%;
-      min-height: 56px;
-      border: 0;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
       font-size: 17px;
-      font-weight: 900;
+      font-weight: 700;
+
+      color: #707586;
+
       cursor: pointer;
-      box-shadow: 0 12px 26px rgba(124, 58, 237, 0.22);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+
+      transition: 0.2s;
     }
 
-    .generate-btn:hover {
+    .type-btn.active {
+      background: white;
+
+      color: #5d28a8;
+
+      box-shadow:
+        0 3px 12px rgba(80, 50, 150, 0.12);
+    }
+
+    input {
+      width: 100%;
+
+      height: 64px;
+
+      border-radius: 18px;
+
+      border: 1px solid #dddfe6;
+
+      background: white;
+
+      padding: 0 18px;
+
+      font-size: 18px;
+
+      color: #293142;
+
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #9b4de3;
+
+      box-shadow:
+        0 0 0 4px rgba(155, 77, 227, 0.1);
+    }
+
+    /* GENERATE BUTTON */
+
+    #generateBtn {
+      width: 100%;
+
+      border: none;
+
+      height: 66px;
+
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7c3aed,
+          #ec3c96
+        );
+
+      color: white;
+
+      font-size: 19px;
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 12px 25px rgba(156, 56, 218, 0.25);
+
+      transition: 0.2s;
+    }
+
+    #generateBtn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 32px rgba(124, 58, 237, 0.28);
-      filter: brightness(1.03);
+
+      box-shadow:
+        0 16px 30px rgba(156, 56, 218, 0.3);
     }
 
-    .generate-btn:active {
+    #generateBtn:active {
       transform: translateY(0);
-      box-shadow: 0 8px 18px rgba(124, 58, 237, 0.20);
+    }
+
+    /* RESULTS */
+
+    .results-section {
+      margin-top: 32px;
     }
 
     .results-header {
       display: flex;
-      justify-content: space-between;
+
       align-items: center;
-      gap: 16px;
-      margin: 32px 0 16px;
+      justify-content: space-between;
+
+      margin-bottom: 20px;
     }
 
     .results-header h2 {
-      margin: 0;
-      font-size: 24px;
-      letter-spacing: -0.4px;
-    }
-
-    .count-badge {
-      flex-shrink: 0;
-      color: var(--primary-dark);
-      background: #ede9fe;
-      border-radius: 999px;
-      padding: 7px 14px;
-      font-size: 14px;
+      font-size: 28px;
       font-weight: 800;
     }
 
-    .results {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+    .count-badge {
+      background: #eee7ff;
+
+      color: #5d28a8;
+
+      padding: 10px 17px;
+
+      border-radius: 25px;
+
+      font-size: 16px;
+      font-weight: 800;
     }
 
+    #results {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 16px;
+    }
+
+    /* CARD */
+
     .name-card {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-width: 0;
       background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 17px 18px;
-      animation: appear 0.25s ease both;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+      border: 1px solid #e0e3e8;
+
+      border-radius: 20px;
+
+      padding: 20px;
+
+      transition: 0.2s;
     }
 
     .name-card:hover {
-      transform: translateY(-2px);
-      border-color: #ddd6fe;
-      box-shadow: 0 10px 30px rgba(76, 29, 149, 0.08);
-    }
+      border-color: #cfc4ed;
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(7px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      box-shadow:
+        0 8px 25px rgba(60, 40, 100, 0.08);
     }
 
     .name-header {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
 
-    .name-info {
-      min-width: 0;
-      flex: 1;
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-bottom: 14px;
     }
 
     .name {
-      font-size: 20px;
-      font-weight: 850;
-      line-height: 1.35;
-      overflow-wrap: anywhere;
+      font-size: 22px;
+
+      font-weight: 800;
+
+      color: #263042;
+
+      word-break: break-word;
     }
 
     .action-buttons {
       display: flex;
-      align-items: center;
-      gap: 6px;
-      flex: 0 0 auto;
+
+      gap: 7px;
+
+      flex-shrink: 0;
     }
 
     .copy-btn {
-      border: 1px solid var(--border);
-      background: #fafafa;
-      color: var(--text);
-      border-radius: 9px;
-      padding: 7px 10px;
+      border: 1px solid #e0e3e8;
+
+      background: #fff;
+
+      border-radius: 10px;
+
+      padding: 9px 12px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color: #293142;
+
       cursor: pointer;
-      font-weight: 750;
-      font-size: 12px;
-      white-space: nowrap;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+      transition: 0.2s;
     }
 
     .copy-btn:hover {
-      background: #f3f4f6;
-      border-color: #d1d5db;
+      background: #f7f5ff;
+
+      border-color: #c9b9f3;
     }
 
-    .copy-btn.copied {
-      color: var(--success);
-      border-color: #a7f3d0;
-      background: #ecfdf5;
-    }
-
-    .detail-row {
+    .id-row {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 10px;
-      min-width: 0;
-      font-size: 13.5px;
-      color: var(--muted);
-      background: #f9fafb;
-      padding: 9px 11px;
-      border-radius: 11px;
-      border: 1px solid var(--border);
+
+      background: #f8f9fb;
+
+      border: 1px solid #e2e5ea;
+
+      border-radius: 13px;
+
+      padding: 12px 13px;
     }
 
-    .detail-row span {
-      min-width: 0;
-      overflow-wrap: anywhere;
+    .id-number {
+      color: #707786;
+
+      font-size: 14px;
+
+      font-weight: 600;
     }
 
-    .detail-row span strong {
-      color: var(--text);
-      letter-spacing: 0.3px;
+    .id-number strong {
+      color: #263042;
+
+      font-size: 16px;
+
+      letter-spacing: 0.5px;
     }
 
-    .empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      color: var(--muted);
-      padding: 40px 10px;
-    }
+    .copy-id {
+      border: 1px solid #dfe2e7;
 
-    .tip {
-      margin-top: 20px;
-      padding: 14px 16px;
-      background: #faf5ff;
-      color: #6b21a8;
-      border-radius: 14px;
+      background: white;
+
+      border-radius: 9px;
+
+      padding: 8px 12px;
+
       font-size: 13px;
-      line-height: 1.7;
-      border: 1px solid #f3e8ff;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      color: #293142;
     }
 
-    footer {
+    .copy-id:hover {
+      background: #f3f1ff;
+    }
+
+    /* EMPTY */
+
+    .empty-state {
       text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      padding: 28px 0 40px;
+
+      padding: 50px 20px;
+
+      color: #7b8190;
     }
 
-    @media (max-width: 850px) {
-      .container {
-        width: min(100% - 24px, 1050px);
-      }
-      .panel {
-        padding: 20px;
-      }
-      .results {
-        grid-template-columns: 1fr;
-      }
+    .empty-state .emoji {
+      font-size: 45px;
+
+      margin-bottom: 10px;
     }
 
-    @media (max-width: 600px) {
-      .container {
-        width: calc(100% - 20px);
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      body {
+        padding: 25px 12px 40px;
       }
-      header {
-        padding: 36px 0 22px;
+
+      header h1 {
+        font-size: 36px;
       }
-      .logo {
-        width: 58px;
-        height: 58px;
-        border-radius: 18px;
-        font-size: 27px;
-        margin-bottom: 14px;
-      }
-      h1 {
-        font-size: clamp(32px, 11vw, 44px);
-        letter-spacing: -1px;
-      }
+
       .subtitle {
-        font-size: 15px;
-        padding: 0 8px;
-      }
-      .panel {
-        padding: 16px;
-        border-radius: 22px;
-      }
-      .controls {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-      .name-type-selector {
-        min-height: 52px;
-        gap: 4px;
-        padding: 4px;
-        border-radius: 15px;
-      }
-      .type-option {
-        min-height: 44px;
-        padding: 0 8px;
-        font-size: 13px;
-      }
-      .type-flag {
-        font-size: 19px;
-      }
-      input[type="number"] {
-        height: 52px;
-      }
-      .generate-btn {
-        min-height: 54px;
         font-size: 16px;
       }
-      .results-header {
-        margin: 26px 0 14px;
+
+      .panel {
+        padding: 20px;
+        border-radius: 22px;
       }
-      .results-header h2 {
-        font-size: 21px;
+
+      .form-grid {
+        grid-template-columns: 1fr;
       }
-      .count-badge {
-        padding: 6px 11px;
-        font-size: 13px;
+
+      #results {
+        grid-template-columns: 1fr;
       }
-      .name-card {
-        padding: 15px;
-        border-radius: 16px;
-      }
+
       .name-header {
         align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 30px;
+      }
+
+      .name-header {
         flex-direction: column;
-        gap: 10px;
       }
-      .name {
-        font-size: 19px;
-      }
+
       .action-buttons {
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 7px;
       }
+
       .copy-btn {
-        width: 100%;
-        min-height: 38px;
-        padding: 7px 8px;
+        flex: 1;
       }
-      .detail-row {
-        align-items: stretch;
+
+      .id-row {
         flex-direction: column;
-        gap: 8px;
-        font-size: 13px;
+        align-items: stretch;
       }
-      .detail-row .copy-btn {
+
+      .copy-id {
         width: 100%;
-      }
-      .tip {
-        font-size: 12.5px;
-        padding: 13px 14px;
-      }
-      footer {
-        padding: 22px 0 30px;
-      }
-    }
-
-    @media (max-width: 390px) {
-      .container {
-        width: calc(100% - 14px);
-      }
-      .panel {
-        padding: 13px;
-      }
-      .type-option {
-        gap: 5px;
-        font-size: 12px;
-      }
-      .type-flag {
-        font-size: 17px;
-      }
-      .results-header {
-        align-items: flex-start;
-      }
-      .results-header h2 {
-        font-size: 19px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">🇹🇭</div>
-      <h1>Thai Name Generator</h1>
-      <p class="subtitle">สร้างชื่อไทย ชื่ออังกฤษ และชื่อเล่นอย่างสุ่ม</p>
-    </header>
 
-    <div class="panel">
-      <div class="controls">
-        <div class="field">
-          <label for="type">ประเภทชื่อ</label>
-          <div class="name-type-selector">
-            <button type="button" class="type-option active" data-type="thai">
-              <span class="type-flag">🇹🇭</span> ไทย
-            </button>
-            <button type="button" class="type-option" data-type="english">
-              <span class="type-flag">🇬🇧</span> English
-            </button>
-          </div>
+<div class="container">
+
+  <header>
+    <div class="logo">✦</div>
+
+    <h1>Thai Name Generator</h1>
+
+    <p class="subtitle">
+      สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม พร้อมเลขบัตรประชาชนจำลอง
+    </p>
+  </header>
+
+
+  <main class="panel">
+
+    <!-- FORM -->
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label>ประเภทชื่อ</label>
+
+        <div class="type-selector">
+
+          <button
+            class="type-btn active"
+            data-type="thai"
+          >
+            🇹🇭 &nbsp;ชื่อไทย
+          </button>
+
+          <button
+            class="type-btn"
+            data-type="english"
+          >
+            🇬🇧 &nbsp;English
+          </button>
+
         </div>
-        <div class="field number-field">
-          <label for="count">จำนวนชื่อ</label>
-          <input type="number" id="count" min="1" max="20" value="2" placeholder="จำนวนชื่อ" />
-        </div>
-        <div class="generate-wrapper">
-          <button type="button" class="generate-btn" id="generateBtn">สุ่มชื่อ ✨</button>
-        </div>
+
       </div>
+
+
+      <div class="field">
+
+        <label>จำนวนชื่อ</label>
+
+        <input
+          type="number"
+          id="count"
+          min="1"
+          max="20"
+          value="10"
+        />
+
+      </div>
+
     </div>
 
-    <div id="results" class="results" style="display: none;">
-      <div class="results-header" style="grid-column: 1 / -1;">
-        <h2>ผลลัพธ์ 🎯</h2>
-        <span class="count-badge" id="countBadge">0</span>
+
+    <button id="generateBtn">
+      ✨ สุ่มชื่อ
+    </button>
+
+
+    <!-- RESULTS -->
+
+    <section class="results-section">
+
+      <div class="results-header">
+
+        <h2>ชื่อที่สร้างขึ้น</h2>
+
+        <span
+          class="count-badge"
+          id="countBadge"
+        >
+          10 ชื่อ
+        </span>
+
       </div>
-    </div>
 
-    <div class="empty" id="empty" style="display: none;">กรุณากด "สุ่มชื่อ" เพื่อเริ่มต้น</div>
 
-    <div class="tip">💡 <strong>เคล็ดลับ:</strong> คลิก "คัดลอก" เพื่อคัดลอกชื่อไปยังคลิปบอร์ด</div>
-  </div>
+      <div id="results"></div>
 
-  <footer>
-    <p>🇹🇭 Thai Name Generator | Created with ❤️ by <a href="https://github.com/Thivabc" target="_blank" style="color: var(--primary); text-decoration: none;">@Thivabc</a></p>
-    <p style="margin: 8px 0 0; font-size: 12px; color: var(--muted);">© 2024 All rights reserved</p>
-  </footer>
+    </section>
 
-  <script type="module">
-    import { thaiNames, englishNames } from './data/names.js';
+  </main>
 
-    const generateBtn = document.getElementById('generateBtn');
-    const countInput = document.getElementById('count');
-    const resultsContainer = document.getElementById('results');
-    const emptyState = document.getElementById('empty');
-    const countBadge = document.getElementById('countBadge');
-    const typeButtons = document.querySelectorAll('.type-option');
+</div>
 
-    let currentType = 'thai';
 
-    typeButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        typeButtons.forEach(b => b.classList.remove('active'));
-        button.classList.add('active');
-        currentType = button.dataset.type;
+<script type="module">
+
+  import {
+    thaiNames,
+    englishNames,
+    thaiSurnames,
+    englishSurnames
+  } from "./data/names.js";
+
+
+  let currentType = "thai";
+
+
+  const countInput =
+    document.getElementById("count");
+
+  const generateBtn =
+    document.getElementById("generateBtn");
+
+  const results =
+    document.getElementById("results");
+
+  const countBadge =
+    document.getElementById("countBadge");
+
+
+  /*
+   * สุ่มชื่อจาก gender + style
+   */
+
+  function getRandomFirstName(names) {
+
+    const genders =
+      Object.keys(names);
+
+    const gender =
+      genders[
+        Math.floor(
+          Math.random() * genders.length
+        )
+      ];
+
+    const styles =
+      Object.keys(names[gender]);
+
+    const style =
+      styles[
+        Math.floor(
+          Math.random() * styles.length
+        )
+      ];
+
+    const list =
+      names[gender][style];
+
+    const firstName =
+      list[
+        Math.floor(
+          Math.random() * list.length
+        )
+      ];
+
+    return {
+      firstName,
+      gender
+    };
+  }
+
+
+  /*
+   * สุ่มนามสกุล
+   */
+
+  function getRandomSurname(surnames) {
+
+    return surnames[
+      Math.floor(
+        Math.random() * surnames.length
+      )
+    ];
+  }
+
+
+  /*
+   * สร้างเลขบัตรประชาชนจำลอง
+   */
+
+  function generateCitizenId() {
+
+    let id = "";
+
+    for (let i = 0; i < 13; i++) {
+
+      id += Math.floor(
+        Math.random() * 10
+      );
+
+    }
+
+    return id;
+  }
+
+
+  /*
+   * สุ่มข้อมูลหนึ่งรายการ
+   */
+
+  function generateProfile() {
+
+    const thai =
+      getRandomFirstName(thaiNames);
+
+    const english =
+      getRandomFirstName(englishNames);
+
+
+    return {
+
+      thaiName:
+        thai.firstName,
+
+      thaiSurname:
+        getRandomSurname(thaiSurnames),
+
+      englishName:
+        english.firstName,
+
+      englishSurname:
+        getRandomSurname(englishSurnames),
+
+      citizenId:
+        generateCitizenId()
+
+    };
+
+  }
+
+
+  /*
+   * สร้าง Card
+   */
+
+  function createCard(profile) {
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "name-card";
+
+
+    /*
+     * ถ้าเลือกไทย
+     * แสดงชื่อไทย
+     *
+     * ถ้าเลือก English
+     * แสดงชื่ออังกฤษ
+     */
+
+    const displayName =
+      currentType === "thai"
+
+        ? `${profile.thaiName} ${profile.thaiSurname}`
+
+        : `${profile.englishName} ${profile.englishSurname}`;
+
+
+    card.innerHTML = `
+
+      <div class="name-header">
+
+        <div class="name">
+          ${displayName}
+        </div>
+
+        <div class="action-buttons">
+
+          <button
+            class="copy-btn"
+            data-copy="${displayName}"
+          >
+            คัดลอกชื่อ
+          </button>
+
+          <button
+            class="copy-btn"
+            data-copy="${
+              currentType === "thai"
+                ? profile.thaiSurname
+                : profile.englishSurname
+            }"
+          >
+            คัดลอกนามสกุล
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="id-row">
+
+        <div class="id-number">
+
+          เลขบัตรประชาชน:
+
+          <strong>
+            ${profile.citizenId}
+          </strong>
+
+        </div>
+
+        <button
+          class="copy-id"
+          data-copy="${profile.citizenId}"
+        >
+          คัดลอกเลขบัตร
+        </button>
+
+      </div>
+
+    `;
+
+
+    /*
+     * Copy buttons
+     */
+
+    card
+      .querySelectorAll("[data-copy]")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          async () => {
+
+            const text =
+              button.dataset.copy;
+
+            try {
+
+              await navigator.clipboard
+                .writeText(text);
+
+              const oldText =
+                button.textContent;
+
+              button.textContent =
+                "✓ คัดลอกแล้ว";
+
+              setTimeout(() => {
+
+                button.textContent =
+                  oldText;
+
+              }, 1200);
+
+            } catch (error) {
+
+              alert(
+                "ไม่สามารถคัดลอกได้"
+              );
+
+            }
+
+          }
+        );
+
       });
-    });
 
-    function getRandomName(names) {
-      const keys = Object.keys(names);
-      const genderKey = keys[Math.floor(Math.random() * keys.length)];
-      const gender = names[genderKey];
-      const styleKeys = Object.keys(gender);
-      const styleKey = styleKeys[Math.floor(Math.random() * styleKeys.length)];
-      const nameArray = gender[styleKey];
-      return nameArray[Math.floor(Math.random() * nameArray.length)];
+
+    return card;
+
+  }
+
+
+  /*
+   * Generate
+   */
+
+  function generateNames() {
+
+    let count =
+      parseInt(
+        countInput.value
+      ) || 10;
+
+
+    count =
+      Math.max(
+        1,
+        Math.min(20, count)
+      );
+
+
+    countInput.value =
+      count;
+
+
+    countBadge.textContent =
+      `${count} ชื่อ`;
+
+
+    results.innerHTML = "";
+
+
+    for (
+      let i = 0;
+      i < count;
+      i++
+    ) {
+
+      const profile =
+        generateProfile();
+
+      const card =
+        createCard(profile);
+
+      results.appendChild(card);
+
     }
 
-    function generateNames() {
-      const count = Math.min(20, Math.max(1, parseInt(countInput.value) || 2));
-      const names = currentType === 'thai' ? thaiNames : englishNames;
+  }
 
-      resultsContainer.innerHTML = `
-        <div class="results-header" style="grid-column: 1 / -1;">
-          <h2>ผลลัพธ์ 🎯</h2>
-          <span class="count-badge">${count}</span>
-        </div>
-      `;
 
-      emptyState.style.display = 'none';
-      resultsContainer.style.display = 'grid';
+  /*
+   * เปลี่ยนภาษา
+   */
 
-      for (let i = 0; i < count; i++) {
-        const name = getRandomName(names);
-        const randomId = Math.random().toString(36).substr(2, 9);
+  document
+    .querySelectorAll(".type-btn")
+    .forEach(button => {
 
-        const card = document.createElement('div');
-        card.className = 'name-card';
-        card.innerHTML = `
-          <div class="name-header">
-            <div class="name-info">
-              <div class="name">${name}</div>
-            </div>
-            <div class="action-buttons">
-              <button class="copy-btn" data-text="${name}">📋 คัดลอก</button>
-            </div>
-          </div>
-          <div class="detail-row">
-            <span><strong>ID:</strong> <strong>#${randomId}</strong></span>
-          </div>
-        `;
+      button.addEventListener(
+        "click",
+        () => {
 
-        card.querySelector('.copy-btn').addEventListener('click', function() {
-          const btn = this;
-          const text = btn.dataset.text;
-          navigator.clipboard.writeText(text).then(() => {
-            btn.classList.add('copied');
-            btn.textContent = '✓ คัดลอกแล้ว';
-            setTimeout(() => {
-              btn.classList.remove('copied');
-              btn.textContent = '📋 คัดลอก';
-            }, 2000);
-          });
-        });
+          document
+            .querySelectorAll(".type-btn")
+            .forEach(btn => {
 
-        resultsContainer.appendChild(card);
+              btn.classList.remove(
+                "active"
+              );
+
+            });
+
+
+          button.classList.add(
+            "active"
+          );
+
+
+          currentType =
+            button.dataset.type;
+
+
+          generateNames();
+
+        }
+      );
+
+    });
+
+
+  /*
+   * ปุ่มสุ่ม
+   */
+
+  generateBtn.addEventListener(
+    "click",
+    generateNames
+  );
+
+
+  /*
+   * Enter ในช่องจำนวน
+   */
+
+  countInput.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+
+        generateNames();
+
       }
-    }
 
-    generateBtn.addEventListener('click', generateNames);
-    countInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') generateNames();
-    });
-  </script>
+    }
+  );
+
+
+  /*
+   * สร้างชื่อทันทีเมื่อเปิดเว็บ
+   */
+
+  generateNames();
+
+</script>
+
 </body>
 </html>
