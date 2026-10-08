@@ -3,766 +3,635 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <title>Thai Name Generator</title>
+<title>Thai Name Generator</title>
 
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="favicon.svg"
-  >
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
 
-  <link
-    rel="shortcut icon"
-    href="favicon.svg"
-  >
 
-  <link
-    rel="apple-touch-icon"
-    href="favicon.svg"
-  >
+<style>
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  <style>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body {
 
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans Thai",
+    sans-serif;
 
-    body {
+  min-height: 100vh;
 
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Noto Sans Thai",
-        sans-serif;
+  background:
 
-      min-height: 100vh;
+    radial-gradient(
+      circle at top left,
+      #f9ddf5 0%,
+      transparent 38%
+    ),
 
-      background:
+    radial-gradient(
+      circle at top right,
+      #e2d9ff 0%,
+      transparent 38%
+    ),
 
-        radial-gradient(
-          circle at top left,
-          rgba(244, 194, 255, 0.45),
-          transparent 35%
-        ),
+    linear-gradient(
+      135deg,
+      #fff5fb,
+      #f5f1ff
+    );
 
-        radial-gradient(
-          circle at top right,
-          rgba(196, 181, 253, 0.45),
-          transparent 35%
-        ),
+  color: #293142;
 
-        linear-gradient(
-          135deg,
-          #fff1f8 0%,
-          #f8f4ff 50%,
-          #eee8ff 100%
-        );
+  padding: 40px 20px 70px;
+}
 
-      color: #273043;
 
-      padding: 40px 20px 60px;
+.container {
 
-    }
+  max-width: 1200px;
 
+  margin: auto;
 
-    .container {
+}
 
-      max-width: 1200px;
 
-      margin: auto;
+/* =========================
+   HEADER
+========================= */
 
-    }
+header {
 
+  text-align: center;
 
-    /* HEADER */
+  margin-bottom: 35px;
 
-    header {
+}
 
-      text-align: center;
 
-      margin-bottom: 35px;
+.logo {
 
-    }
+  width: 74px;
 
+  height: 74px;
 
-    .logo {
+  margin: 0 auto 18px;
 
-      width: 74px;
-      height: 74px;
+  border-radius: 22px;
 
-      margin: 0 auto 20px;
+  display: flex;
 
-      border-radius: 22px;
+  align-items: center;
 
-      display: flex;
+  justify-content: center;
 
-      align-items: center;
+  font-size: 38px;
 
-      justify-content: center;
+  color: white;
 
-      font-size: 38px;
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #ec4899
+    );
 
-      color: white;
+  box-shadow:
+    0 12px 30px
+    rgba(124,58,237,.25);
 
-      background:
-        linear-gradient(
-          135deg,
-          #7c3aed,
-          #ec4899
-        );
+}
 
-      box-shadow:
-        0 15px 35px
-        rgba(124, 58, 237, 0.25);
 
-    }
+h1 {
 
+  font-size: 50px;
 
-    header h1 {
+  font-weight: 850;
 
-      font-size: 48px;
+  line-height: 1.1;
 
-      line-height: 1.1;
+  margin-bottom: 14px;
 
-      font-weight: 800;
+  background:
+    linear-gradient(
+      90deg,
+      #70219b,
+      #b82291
+    );
 
-      background:
-        linear-gradient(
-          90deg,
-          #7223a1,
-          #c0258d
-        );
+  -webkit-background-clip: text;
 
-      -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-      -webkit-text-fill-color: transparent;
+}
 
-      margin-bottom: 15px;
 
-    }
+.subtitle {
 
+  color: #747887;
 
-    .subtitle {
+  font-size: 18px;
 
-      color: #6b7280;
+}
 
-      font-size: 19px;
 
-      font-weight: 500;
+/* =========================
+   MAIN PANEL
+========================= */
 
-    }
+.panel {
 
+  background: rgba(255,255,255,.96);
 
-    /* PANEL */
+  border-radius: 28px;
 
-    .panel {
+  padding: 32px;
 
-      background:
-        rgba(255, 255, 255, 0.94);
+  box-shadow:
+    0 25px 70px
+    rgba(75,45,120,.13);
 
-      border-radius: 28px;
+}
 
-      padding: 32px;
 
-      box-shadow:
-        0 25px 70px
-        rgba(90, 55, 130, 0.15);
+/* =========================
+   FORM
+========================= */
 
-      border:
-        1px solid
-        rgba(255,255,255,0.8);
+.form-grid {
 
-    }
+  display: grid;
 
+  grid-template-columns:
+    1fr 300px;
 
-    /* FORM */
+  gap: 22px;
 
-    .form-grid {
+  margin-bottom: 20px;
 
-      display: grid;
+}
 
-      grid-template-columns:
-        1fr 320px;
 
-      gap: 20px;
+label {
 
-      margin-bottom: 20px;
+  display: block;
 
-    }
+  font-size: 17px;
 
+  font-weight: 750;
 
-    .field label {
+  margin-bottom: 10px;
 
-      display: block;
+}
 
-      font-size: 17px;
 
-      font-weight: 700;
+.type-selector {
 
-      margin-bottom: 10px;
+  display: grid;
 
-      color: #293142;
+  grid-template-columns: 1fr 1fr;
 
-    }
+  background: #f0edff;
 
+  border: 1px solid #e3dbff;
 
-    .type-selector {
+  padding: 6px;
 
-      display: grid;
+  border-radius: 18px;
 
-      grid-template-columns:
-        1fr 1fr;
+}
 
-      padding: 6px;
 
-      background: #f0edff;
+.type-btn {
 
-      border:
-        1px solid #e6ddff;
+  border: none;
 
-      border-radius: 18px;
+  background: transparent;
 
-    }
+  border-radius: 13px;
 
+  padding: 14px;
 
-    .type-btn {
+  font-size: 17px;
 
-      border: none;
+  font-weight: 750;
 
-      background: transparent;
+  color: #747989;
 
-      padding: 14px;
+  cursor: pointer;
 
-      border-radius: 13px;
+}
 
-      font-size: 17px;
 
-      font-weight: 700;
+.type-btn.active {
 
-      color: #707586;
+  background: white;
 
-      cursor: pointer;
+  color: #5927a4;
 
-      transition: 0.2s;
+  box-shadow:
+    0 3px 12px
+    rgba(60,40,100,.10);
 
-    }
+}
 
 
-    .type-btn.active {
+#count {
 
-      background: white;
+  width: 100%;
 
-      color: #5d28a8;
+  height: 64px;
 
-      box-shadow:
-        0 3px 12px
-        rgba(80, 50, 150, 0.12);
+  border-radius: 18px;
 
-    }
+  border: 1px solid #dedfe5;
 
+  padding: 0 18px;
 
-    input {
+  font-size: 18px;
 
-      width: 100%;
+  outline: none;
 
-      height: 64px;
+}
 
-      border-radius: 18px;
 
-      border:
-        1px solid #dddfe6;
+#count:focus {
 
-      background: white;
+  border-color: #9347df;
 
-      padding: 0 18px;
+}
 
-      font-size: 18px;
 
-      color: #293142;
+#generateBtn {
 
-      outline: none;
+  width: 100%;
 
-    }
+  height: 66px;
 
+  border: none;
 
-    input:focus {
+  border-radius: 17px;
 
-      border-color: #9b4de3;
+  background:
+    linear-gradient(
+      90deg,
+      #7c3aed,
+      #ed3b96
+    );
 
-      box-shadow:
-        0 0 0 4px
-        rgba(155, 77, 227, 0.1);
+  color: white;
 
-    }
+  font-size: 19px;
 
+  font-weight: 800;
 
-    /* GENERATE */
+  cursor: pointer;
 
-    #generateBtn {
+  box-shadow:
+    0 12px 28px
+    rgba(139,57,220,.25);
 
-      width: 100%;
+}
 
-      height: 66px;
 
-      border: none;
+#generateBtn:hover {
 
-      border-radius: 17px;
+  transform: translateY(-1px);
 
-      background:
-        linear-gradient(
-          90deg,
-          #7c3aed,
-          #ec3c96
-        );
+}
 
-      color: white;
 
-      font-size: 19px;
+/* =========================
+   RESULTS
+========================= */
 
-      font-weight: 800;
+.results-section {
 
-      cursor: pointer;
+  margin-top: 34px;
 
-      box-shadow:
-        0 12px 25px
-        rgba(156, 56, 218, 0.25);
+}
 
-      transition: 0.2s;
 
-    }
+.results-header {
 
+  display: flex;
 
-    #generateBtn:hover {
+  align-items: center;
 
-      transform:
-        translateY(-2px);
+  justify-content: space-between;
 
-      box-shadow:
-        0 16px 30px
-        rgba(156, 56, 218, 0.3);
+  margin-bottom: 20px;
 
-    }
+}
 
 
-    /* RESULTS */
+.results-header h2 {
 
-    .results-section {
+  font-size: 30px;
 
-      margin-top: 32px;
+  font-weight: 850;
 
-    }
+}
 
 
-    .results-header {
+.count-badge {
 
-      display: flex;
+  background: #eee6ff;
 
-      align-items: center;
+  color: #5c25a9;
 
-      justify-content: space-between;
+  padding: 10px 18px;
 
-      margin-bottom: 20px;
+  border-radius: 30px;
 
-    }
+  font-weight: 800;
 
+}
 
-    .results-header h2 {
 
-      font-size: 28px;
+/* =========================
+   CARDS
+========================= */
 
-      font-weight: 800;
+#results {
 
-    }
+  display: grid;
 
+  grid-template-columns:
+    repeat(2, 1fr);
 
-    .count-badge {
+  gap: 16px;
 
-      background: #eee7ff;
+}
 
-      color: #5d28a8;
 
-      padding: 10px 17px;
+.name-card {
 
-      border-radius: 25px;
+  background: white;
 
-      font-size: 16px;
+  border:
+    1px solid #e0e2e8;
 
-      font-weight: 800;
+  border-radius: 20px;
 
-    }
+  padding: 20px;
 
+}
 
-    #results {
 
-      display: grid;
+.name-card:hover {
 
-      grid-template-columns:
-        repeat(2, 1fr);
+  border-color: #d0c4f7;
 
-      gap: 16px;
+  box-shadow:
+    0 8px 25px
+    rgba(70,40,120,.08);
 
-    }
+}
 
 
-    /* CARD */
+.name-top {
 
-    .name-card {
+  display: flex;
 
-      background: white;
+  justify-content:
+    space-between;
 
-      border:
-        1px solid #e0e3e8;
+  align-items: center;
 
-      border-radius: 20px;
+  gap: 12px;
 
-      padding: 20px;
+  margin-bottom: 18px;
 
-      transition: 0.2s;
+}
 
-    }
 
+.full-name {
 
-    .name-card:hover {
+  font-size: 23px;
 
-      border-color: #cfc4ed;
+  font-weight: 850;
 
-      box-shadow:
-        0 8px 25px
-        rgba(60,40,100,0.08);
+  color: #293142;
 
-    }
+  line-height: 1.3;
 
+}
 
-    .card-top {
 
-      display: flex;
+.copy-buttons {
 
-      justify-content:
-        space-between;
+  display: flex;
 
-      align-items: flex-start;
+  gap: 8px;
 
-      gap: 15px;
+}
 
-      margin-bottom: 15px;
 
-    }
+.copy-btn {
 
+  border:
+    1px solid #dfe2e7;
 
-    .main-name {
+  background: white;
 
-      font-size: 23px;
+  border-radius: 9px;
 
-      font-weight: 800;
+  padding: 9px 12px;
 
-      color: #263042;
+  font-size: 13px;
 
-      line-height: 1.35;
+  font-weight: 750;
 
-    }
+  white-space: nowrap;
 
+  cursor: pointer;
 
-    .main-name small {
+}
 
-      display: block;
 
-      margin-top: 3px;
+.copy-btn:hover {
 
-      font-size: 13px;
+  background: #faf9ff;
 
-      color: #858b98;
+}
 
-      font-weight: 600;
 
-    }
+/* =========================
+   CITIZEN ID
+========================= */
 
+.id-row {
 
-    .copy-main {
+  display: flex;
 
-      white-space: nowrap;
+  align-items: center;
 
-      border:
-        1px solid #e0e3e8;
+  justify-content:
+    space-between;
 
-      background: white;
+  gap: 12px;
 
-      border-radius: 10px;
+  background: #f8f9fb;
 
-      padding: 9px 12px;
+  border:
+    1px solid #e1e4e9;
 
-      font-size: 13px;
+  border-radius: 13px;
 
-      font-weight: 700;
+  padding: 12px 14px;
 
-      cursor: pointer;
+}
 
-    }
 
+.id-text {
 
-    /* DETAIL */
+  color: #747b89;
 
-    .detail-grid {
+  font-size: 15px;
 
-      display: grid;
+  font-weight: 600;
 
-      grid-template-columns:
-        1fr 1fr;
+}
 
-      gap: 10px;
 
-      margin-bottom: 12px;
+.id-text strong {
 
-    }
+  color: #293142;
 
+  font-size: 17px;
 
-    .detail-box {
+  letter-spacing: .6px;
 
-      background: #fafbfc;
+}
 
-      border:
-        1px solid #e5e7eb;
 
-      border-radius: 12px;
+.copy-id {
 
-      padding: 11px 12px;
+  border:
+    1px solid #dfe2e7;
 
-      min-width: 0;
+  background: white;
 
-    }
+  border-radius: 9px;
 
+  padding: 9px 13px;
 
-    .detail-label {
+  font-size: 13px;
 
-      display: block;
+  font-weight: 750;
 
-      color: #7b8190;
+  white-space: nowrap;
 
-      font-size: 12px;
+  cursor: pointer;
 
-      font-weight: 700;
+}
 
-      margin-bottom: 4px;
 
-    }
+/* =========================
+   MOBILE
+========================= */
 
+@media (max-width: 800px) {
 
-    .detail-value {
+  body {
 
-      color: #293142;
+    padding:
+      25px 12px 50px;
 
-      font-size: 15px;
+  }
 
-      font-weight: 700;
 
-      word-break: break-word;
+  h1 {
 
-    }
+    font-size: 36px;
 
+  }
 
-    .detail-action {
 
-      margin-top: 7px;
+  .panel {
 
-      border:
-        1px solid #e0e3e8;
+    padding: 20px;
 
-      background: white;
+  }
 
-      border-radius: 8px;
 
-      padding: 6px 9px;
+  .form-grid {
 
-      font-size: 12px;
+    grid-template-columns: 1fr;
 
-      font-weight: 700;
+  }
 
-      cursor: pointer;
 
-    }
+  #results {
 
+    grid-template-columns: 1fr;
 
-    /* CITIZEN ID */
+  }
 
-    .id-row {
+}
 
-      display: flex;
 
-      align-items: center;
+@media (max-width: 520px) {
 
-      justify-content:
-        space-between;
+  .name-top {
 
-      gap: 10px;
+    flex-direction: column;
 
-      background: #f8f9fb;
+    align-items: stretch;
 
-      border:
-        1px solid #e2e5ea;
+  }
 
-      border-radius: 13px;
 
-      padding: 12px 13px;
+  .copy-buttons {
 
-    }
+    width: 100%;
 
+  }
 
-    .id-number {
 
-      color: #707786;
+  .copy-btn {
 
-      font-size: 14px;
+    flex: 1;
 
-      font-weight: 600;
+  }
 
-    }
 
+  .id-row {
 
-    .id-number strong {
+    flex-direction: column;
 
-      color: #263042;
+    align-items: stretch;
 
-      font-size: 16px;
+  }
 
-      letter-spacing: 0.7px;
 
-    }
+  .copy-id {
 
+    width: 100%;
 
-    .copy-id {
+  }
 
-      border:
-        1px solid #dfe2e7;
+}
 
-      background: white;
-
-      border-radius: 9px;
-
-      padding: 8px 12px;
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      cursor: pointer;
-
-      color: #293142;
-
-      white-space: nowrap;
-
-    }
-
-
-    /* RESPONSIVE */
-
-    @media (max-width: 800px) {
-
-      body {
-
-        padding:
-          25px 12px 40px;
-
-      }
-
-
-      header h1 {
-
-        font-size: 36px;
-
-      }
-
-
-      .subtitle {
-
-        font-size: 16px;
-
-      }
-
-
-      .panel {
-
-        padding: 20px;
-
-        border-radius: 22px;
-
-      }
-
-
-      .form-grid {
-
-        grid-template-columns: 1fr;
-
-      }
-
-
-      #results {
-
-        grid-template-columns: 1fr;
-
-      }
-
-    }
-
-
-    @media (max-width: 520px) {
-
-      header h1 {
-
-        font-size: 30px;
-
-      }
-
-
-      .card-top {
-
-        flex-direction: column;
-
-      }
-
-
-      .copy-main {
-
-        width: 100%;
-
-      }
-
-
-      .detail-grid {
-
-        grid-template-columns: 1fr;
-
-      }
-
-
-      .id-row {
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-      }
-
-
-      .copy-id {
-
-        width: 100%;
-
-      }
-
-    }
-
-  </style>
+</style>
 
 </head>
 
@@ -773,118 +642,108 @@
 <div class="container">
 
 
-  <header>
+<header>
 
-    <div class="logo">
-      ✦
-    </div>
+  <div class="logo">
+    ✦
+  </div>
 
-    <h1>
-      Thai Name Generator
-    </h1>
+  <h1>
+    Thai Name Generator
+  </h1>
 
-    <p class="subtitle">
-      สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม
-      พร้อมเลขบัตรประชาชนจำลอง
-    </p>
+  <p class="subtitle">
+    สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม
+    พร้อมเลขบัตรประชาชนจำลอง
+  </p>
 
-  </header>
-
-
-  <main class="panel">
+</header>
 
 
-    <!-- SETTINGS -->
-
-    <div class="form-grid">
+<main class="panel">
 
 
-      <div class="field">
-
-        <label>
-          ประเภทชื่อหลัก
-        </label>
+  <div class="form-grid">
 
 
-        <div class="type-selector">
+    <div>
 
+      <label>
+        ประเภทชื่อหลัก
+      </label>
 
-          <button
-            class="type-btn active"
-            data-type="thai"
-          >
-            🇹🇭 &nbsp;ชื่อไทย
-          </button>
+      <div class="type-selector">
 
-
-          <button
-            class="type-btn"
-            data-type="english"
-          >
-            🇬🇧 &nbsp;English
-          </button>
-
-
-        </div>
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          จำนวนชื่อ
-        </label>
-
-
-        <input
-          type="number"
-          id="count"
-          min="1"
-          max="100"
-          value="10"
+        <button
+          class="type-btn active"
+          data-type="thai"
         >
+          🇹🇭 &nbsp;ชื่อไทย
+        </button>
+
+        <button
+          class="type-btn"
+          data-type="english"
+        >
+          🇬🇧 &nbsp;English
+        </button>
 
       </div>
-
 
     </div>
 
 
-    <button id="generateBtn">
-      ✨ สุ่มชื่อ
-    </button>
+    <div>
+
+      <label>
+        จำนวนชื่อ
+      </label>
+
+      <input
+        id="count"
+        type="number"
+        min="1"
+        max="100"
+        value="10"
+      >
+
+    </div>
 
 
-    <!-- RESULTS -->
-
-    <section class="results-section">
+  </div>
 
 
-      <div class="results-header">
-
-        <h2>
-          ชื่อที่สร้างขึ้น
-        </h2>
+  <button id="generateBtn">
+    ✨ สุ่มชื่อ
+  </button>
 
 
-        <span
-          class="count-badge"
-          id="countBadge"
-        >
-          10 ชื่อ
-        </span>
-
-      </div>
+  <section class="results-section">
 
 
-      <div id="results"></div>
+    <div class="results-header">
+
+      <h2>
+        ชื่อที่สร้างขึ้น
+      </h2>
+
+      <span
+        id="countBadge"
+        class="count-badge"
+      >
+        10 ชื่อ
+      </span>
+
+    </div>
 
 
-    </section>
+    <div id="results"></div>
 
 
-  </main>
+  </section>
+
+
+</main>
 
 
 </div>
@@ -893,642 +752,350 @@
 <script type="module">
 
 
-  import {
+import {
 
-    thaiNames,
-    englishNames,
-    thaiSurnames,
-    englishSurnames
+  thaiNames,
+  englishNames,
+  thaiSurnames,
+  englishSurnames
 
-  } from "./data/names.js";
-
-
-  let currentType = "thai";
+} from "./data/names.js";
 
 
-  const countInput =
-    document.getElementById("count");
+let currentType = "thai";
 
 
-  const generateBtn =
-    document.getElementById("generateBtn");
+const countInput =
+  document.getElementById("count");
 
 
-  const results =
-    document.getElementById("results");
+const generateBtn =
+  document.getElementById("generateBtn");
 
 
-  const countBadge =
-    document.getElementById("countBadge");
+const results =
+  document.getElementById("results");
 
 
-  // ==================================================
-  // RANDOM
-  // ==================================================
-
-  function randomItem(array) {
-
-    return array[
-      Math.floor(
-        Math.random() * array.length
-      )
-    ];
-
-  }
+const countBadge =
+  document.getElementById("countBadge");
 
 
-  // ==================================================
-  // SHUFFLE
-  // ==================================================
 
-  function shuffle(array) {
+/* =========================
+   RANDOM
+========================= */
 
-    const result = [...array];
+function randomItem(array) {
 
-    for (
-      let i = result.length - 1;
-      i > 0;
-      i--
-    ) {
+  return array[
+    Math.floor(
+      Math.random() * array.length
+    )
+  ];
 
-      const j =
-        Math.floor(
-          Math.random() * (i + 1)
-        );
-
-      [
-        result[i],
-        result[j]
-      ] =
-      [
-        result[j],
-        result[i]
-      ];
-
-    }
-
-    return result;
-
-  }
+}
 
 
-  // ==================================================
-  // THAI CITIZEN ID
-  //
-  // 13 digits
-  // Digit 13 = checksum
-  // ==================================================
 
-  function generateCitizenId() {
+/* =========================
+   CITIZEN ID
+========================= */
 
-    const digits = [];
+function generateCitizenId() {
+
+  const digits = [];
 
 
-    /*
-     * Digit 1
-     *
-     * ใช้ 1-8
-     * เพื่อไม่ให้ขึ้นต้นด้วย 0
-     */
+  /*
+    หลักที่ 1
+    1-8
+  */
+
+  digits.push(
+    Math.floor(
+      Math.random() * 8
+    ) + 1
+  );
+
+
+  /*
+    หลักที่ 2-12
+  */
+
+  for (
+    let i = 1;
+    i < 12;
+    i++
+  ) {
 
     digits.push(
       Math.floor(
-        Math.random() * 8
-      ) + 1
+        Math.random() * 10
+      )
     );
-
-
-    /*
-     * Digits 2-12
-     */
-
-    for (
-      let i = 1;
-      i < 12;
-      i++
-    ) {
-
-      digits.push(
-        Math.floor(
-          Math.random() * 10
-        )
-      );
-
-    }
-
-
-    /*
-     * Checksum
-     *
-     * sum =
-     * digit1 × 13
-     * digit2 × 12
-     * ...
-     * digit12 × 2
-     *
-     * checksum =
-     * (11 - sum % 11) % 10
-     */
-
-    let sum = 0;
-
-
-    for (
-      let i = 0;
-      i < 12;
-      i++
-    ) {
-
-      sum +=
-        digits[i] *
-        (13 - i);
-
-    }
-
-
-    const checksum =
-      (11 - (sum % 11)) % 10;
-
-
-    digits.push(checksum);
-
-
-    return digits.join("");
 
   }
 
 
-  // ==================================================
-  // CREATE PROFILE
-  // ==================================================
+  /*
+    Checksum หลักที่ 13
 
-  function generateProfile() {
+    (หลัก1 × 13)
+    + (หลัก2 × 12)
+    ...
+    + (หลัก12 × 2)
 
+    แล้วคำนวณ check digit
+  */
 
-    /*
-     * สุ่ม gender เดียวกัน
-     * เพื่อให้ชื่อไทย/อังกฤษ
-     * เป็นเพศเดียวกัน
-     */
-
-    const gender =
-      Math.random() < 0.5
-        ? "male"
-        : "female";
+  let sum = 0;
 
 
-    const thaiName =
+  for (
+    let i = 0;
+    i < 12;
+    i++
+  ) {
+
+    sum +=
+      digits[i] *
+      (13 - i);
+
+  }
+
+
+  const checksum =
+    (11 - (sum % 11)) % 10;
+
+
+  digits.push(checksum);
+
+
+  return digits.join("");
+
+}
+
+
+
+/* =========================
+   GENERATE PROFILE
+========================= */
+
+function generateProfile() {
+
+
+  const gender =
+    Math.random() < 0.5
+      ? "male"
+      : "female";
+
+
+  let firstName;
+  let surname;
+
+
+  if (
+    currentType === "thai"
+  ) {
+
+    firstName =
       randomItem(
         thaiNames[gender]
       );
 
-
-    const englishName =
-      randomItem(
-        englishNames[gender]
-      );
-
-
-    const thaiSurname =
+    surname =
       randomItem(
         thaiSurnames
       );
 
+  } else {
 
-    const englishSurname =
+    firstName =
+      randomItem(
+        englishNames[gender]
+      );
+
+    surname =
       randomItem(
         englishSurnames
       );
 
+  }
 
-    return {
 
-      thaiName,
+  return {
 
-      thaiSurname,
+    firstName,
 
-      englishName,
+    surname,
 
-      englishSurname,
+    citizenId:
+      generateCitizenId()
 
-      citizenId:
-        generateCitizenId()
+  };
 
-    };
+}
+
+
+
+/* =========================
+   COPY
+========================= */
+
+async function copyText(
+  text,
+  button
+) {
+
+  const oldText =
+    button.textContent;
+
+
+  try {
+
+    await navigator
+      .clipboard
+      .writeText(text);
+
+  } catch {
+
+    const textarea =
+      document.createElement(
+        "textarea"
+      );
+
+    textarea.value = text;
+
+    document.body.appendChild(
+      textarea
+    );
+
+    textarea.select();
+
+    document.execCommand(
+      "copy"
+    );
+
+    textarea.remove();
 
   }
 
 
-  // ==================================================
-  // CREATE CARD
-  // ==================================================
-
-  function createCard(
-    profile,
-    index
-  ) {
+  button.textContent =
+    "✓ คัดลอกแล้ว";
 
 
-    const card =
-      document.createElement(
-        "div"
-      );
+  setTimeout(
+    () => {
+
+      button.textContent =
+        oldText;
+
+    },
+    1000
+  );
+
+}
 
 
-    card.className =
-      "name-card";
+
+/* =========================
+   CREATE CARD
+========================= */
+
+function createCard(
+  profile,
+  index
+) {
 
 
-    const mainName =
-      currentType === "thai"
-
-        ? `${profile.thaiName} ${profile.thaiSurname}`
-
-        : `${profile.englishName} ${profile.englishSurname}`;
+  const card =
+    document.createElement(
+      "div"
+    );
 
 
-    const mainLabel =
-      currentType === "thai"
-
-        ? "🇹🇭 ชื่อไทย"
-
-        : "🇬🇧 English Name";
+  card.className =
+    "name-card";
 
 
-    card.innerHTML = `
+  const fullName =
+    `${profile.firstName} ${profile.surname}`;
 
-      <div class="card-top">
 
-        <div class="main-name">
+  card.innerHTML = `
 
-          ${mainName}
+    <div class="name-top">
 
-          <small>
-            ${mainLabel} · #${index}
-          </small>
+      <div class="full-name">
 
-        </div>
+        ${fullName}
 
+      </div>
+
+
+      <div class="copy-buttons">
 
         <button
-          class="copy-main"
-          data-copy="${mainName}"
+          class="copy-btn"
+          data-value="${profile.firstName}"
         >
           คัดลอกชื่อ
         </button>
 
-      </div>
-
-
-      <div class="detail-grid">
-
-
-        <div class="detail-box">
-
-          <span class="detail-label">
-            🇹🇭 ชื่อไทย
-          </span>
-
-          <div class="detail-value">
-            ${profile.thaiName}
-          </div>
-
-          <button
-            class="detail-action"
-            data-copy="${profile.thaiName}"
-          >
-            คัดลอก
-          </button>
-
-        </div>
-
-
-        <div class="detail-box">
-
-          <span class="detail-label">
-            🇹🇭 นามสกุลไทย
-          </span>
-
-          <div class="detail-value">
-            ${profile.thaiSurname}
-          </div>
-
-          <button
-            class="detail-action"
-            data-copy="${profile.thaiSurname}"
-          >
-            คัดลอก
-          </button>
-
-        </div>
-
-
-        <div class="detail-box">
-
-          <span class="detail-label">
-            🇬🇧 First Name
-          </span>
-
-          <div class="detail-value">
-            ${profile.englishName}
-          </div>
-
-          <button
-            class="detail-action"
-            data-copy="${profile.englishName}"
-          >
-            Copy
-          </button>
-
-        </div>
-
-
-        <div class="detail-box">
-
-          <span class="detail-label">
-            🇬🇧 Last Name
-          </span>
-
-          <div class="detail-value">
-            ${profile.englishSurname}
-          </div>
-
-          <button
-            class="detail-action"
-            data-copy="${profile.englishSurname}"
-          >
-            Copy
-          </button>
-
-        </div>
-
-
-      </div>
-
-
-      <div class="id-row">
-
-        <div class="id-number">
-
-          เลขบัตรประชาชน:
-
-          <strong>
-            ${profile.citizenId}
-          </strong>
-
-        </div>
-
 
         <button
-          class="copy-id"
-          data-copy="${profile.citizenId}"
+          class="copy-btn"
+          data-value="${profile.surname}"
         >
-          คัดลอกเลขบัตร
+          คัดลอกนามสกุล
         </button>
 
       </div>
 
-    `;
+    </div>
 
 
-    /*
-     * COPY
-     */
+    <div class="id-row">
 
-    card
-      .querySelectorAll(
-        "[data-copy]"
-      )
-      .forEach(button => {
+      <div class="id-text">
 
+        เลขบัตรประชาชน:
 
-        button.addEventListener(
-          "click",
-          async () => {
+        <strong>
+          ${profile.citizenId}
+        </strong>
 
+      </div>
 
-            const text =
-              button.dataset.copy;
 
+      <button
+        class="copy-id"
+        data-value="${profile.citizenId}"
+      >
+        คัดลอกเลขบัตร
+      </button>
 
-            try {
+    </div>
 
+  `;
 
-              await navigator
-                .clipboard
-                .writeText(text);
 
-
-              const oldText =
-                button.textContent;
-
-
-              button.textContent =
-                "✓ คัดลอกแล้ว";
-
-
-              setTimeout(
-                () => {
-
-                  button.textContent =
-                    oldText;
-
-                },
-                1200
-              );
-
-
-            } catch (error) {
-
-
-              /*
-               * fallback
-               */
-
-              const textarea =
-                document.createElement(
-                  "textarea"
-                );
-
-
-              textarea.value =
-                text;
-
-
-              document.body.appendChild(
-                textarea
-              );
-
-
-              textarea.select();
-
-
-              document.execCommand(
-                "copy"
-              );
-
-
-              textarea.remove();
-
-
-              const oldText =
-                button.textContent;
-
-
-              button.textContent =
-                "✓ คัดลอกแล้ว";
-
-
-              setTimeout(
-                () => {
-
-                  button.textContent =
-                    oldText;
-
-                },
-                1200
-              );
-
-            }
-
-          }
-        );
-
-      });
-
-
-    return card;
-
-  }
-
-
-  // ==================================================
-  // GENERATE NAMES
-  // ==================================================
-
-  function generateNames() {
-
-
-    let count =
-      parseInt(
-        countInput.value
-      );
-
-
-    if (
-      isNaN(count)
-    ) {
-
-      count = 10;
-
-    }
-
-
-    /*
-     * จำกัด 1-100
-     */
-
-    count =
-      Math.max(
-        1,
-        Math.min(
-          100,
-          count
-        )
-      );
-
-
-    countInput.value =
-      count;
-
-
-    countBadge.textContent =
-      `${count} ชื่อ`;
-
-
-    results.innerHTML =
-      "";
-
-
-    /*
-     * สร้าง 100 รายการ
-     *
-     * แต่ไม่รับประกันว่า
-     * ชื่อ+นามสกุลทั้งหมดจะไม่ซ้ำ
-     * เพราะฐานข้อมูลมีจำนวนจำกัด
-     */
-
-    const profiles = [];
-
-
-    for (
-      let i = 0;
-      i < count;
-      i++
-    ) {
-
-      profiles.push(
-        generateProfile()
-      );
-
-    }
-
-
-    profiles.forEach(
-      (profile, index) => {
-
-        results.appendChild(
-          createCard(
-            profile,
-            index + 1
-          )
-        );
-
-      }
-    );
-
-  }
-
-
-  // ==================================================
-  // LANGUAGE BUTTON
-  // ==================================================
-
-  document
+  card
     .querySelectorAll(
-      ".type-btn"
+      "[data-value]"
     )
     .forEach(button => {
-
 
       button.addEventListener(
         "click",
         () => {
 
-
-          document
-            .querySelectorAll(
-              ".type-btn"
-            )
-            .forEach(btn => {
-
-              btn.classList.remove(
-                "active"
-              );
-
-            });
-
-
-          button.classList.add(
-            "active"
+          copyText(
+            button.dataset.value,
+            button
           );
-
-
-          currentType =
-            button.dataset.type;
-
-
-          generateNames();
 
         }
       );
@@ -1536,46 +1103,147 @@
     });
 
 
-  // ==================================================
-  // GENERATE BUTTON
-  // ==================================================
+  return card;
 
-  generateBtn.addEventListener(
-    "click",
-    generateNames
-  );
+}
 
 
-  // ==================================================
-  // ENTER
-  // ==================================================
 
-  countInput.addEventListener(
-    "keydown",
-    event => {
+/* =========================
+   GENERATE
+========================= */
+
+function generateNames() {
 
 
-      if (
-        event.key === "Enter"
-      ) {
+  let count =
+    parseInt(
+      countInput.value
+    );
+
+
+  if (
+    Number.isNaN(count)
+  ) {
+
+    count = 10;
+
+  }
+
+
+  count =
+    Math.max(
+      1,
+      Math.min(
+        100,
+        count
+      )
+    );
+
+
+  countInput.value =
+    count;
+
+
+  countBadge.textContent =
+    `${count} ชื่อ`;
+
+
+  results.innerHTML =
+    "";
+
+
+  /*
+    สร้างชื่อ
+  */
+
+  for (
+    let i = 0;
+    i < count;
+    i++
+  ) {
+
+    const profile =
+      generateProfile();
+
+
+    results.appendChild(
+      createCard(
+        profile,
+        i + 1
+      )
+    );
+
+  }
+
+}
+
+
+
+/* =========================
+   TYPE BUTTON
+========================= */
+
+document
+  .querySelectorAll(
+    ".type-btn"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+
+        document
+          .querySelectorAll(
+            ".type-btn"
+          )
+          .forEach(btn => {
+
+            btn.classList.remove(
+              "active"
+            );
+
+          });
+
+
+        button.classList.add(
+          "active"
+        );
+
+
+        currentType =
+          button.dataset.type;
+
 
         generateNames();
 
       }
+    );
 
-    }
-  );
+  });
 
 
-  // ==================================================
-  // INITIAL
-  // ==================================================
 
-  generateNames();
+/* =========================
+   GENERATE BUTTON
+========================= */
 
+generateBtn.addEventListener(
+  "click",
+  generateNames
+);
+
+
+
+/* =========================
+   INITIAL
+========================= */
+
+generateNames();
 
 </script>
-
 
 </body>
 
