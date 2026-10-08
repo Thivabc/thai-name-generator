@@ -13,9 +13,7 @@
         --muted: #6b7280;
         --primary: #2563eb;
         --primary-dark: #1d4ed8;
-        --accent: #f59e0b;
         --border: #dbeafe;
-        --success: #059669;
       }
 
       * { box-sizing: border-box; }
@@ -193,43 +191,12 @@
           </article>
         </div>
 
-        <p class="note">สร้างสรรค์จากข้อมูลตัวอย่างสำหรับแสดงผลบนเว็บไซต์</p>
+        <p class="note">Data loaded from GitHub module</p>
       </main>
     </div>
 
-    <script>
-      const thaiNames = {
-        male: {
-          classic: ["กิตติภัทร", "พีรพัฒน์", "ณัฐภัทร", "ศุภชัย", "ปริญญา"],
-          modern: ["ภาคิน", "วุฒิชัย", "นภัสกร", "ชยพล", "ธีรภัทร์"],
-          cute: ["ปอนด์", "เบนซ์", "บอส", "นัท", "เพิร์ล"],
-          royal: ["ภัทรเดช", "ชินวัตร", "สุริยเดช", "อธิกร", "อำพล"]
-        },
-        female: {
-          classic: ["สุชาดา", "กัญญารัตน์", "วรรณา", "ศุภลักษณ์", "ประภัสสร"],
-          modern: ["พราว", "ลลนา", "นงนภัส", "ปุณยวีร์", "อัญชิสา"],
-          cute: ["มินนี่", "พิม", "แอน", "น้อง", "ไอซ์"],
-          royal: ["ภัสสร", "จุไรรัตน์", "ศรุตา", "มธุรส", "อุษา"]
-        },
-        unisex: {
-          classic: ["พัชรินทร์", "ฤทัย", "ชลธิชา", "วรัญญู", "ไตรรงค์"],
-          modern: ["ปริศนา", "นวพร", "ชินกฤต", "ภาวิน", "อริสรา"],
-          cute: ["นุ่น", "มะลิ", "นก", "ป๊อป", "มิ้น"],
-          royal: ["รัตนาวดี", "กัลยาณี", "ศรัณย์", "เกษม", "พุทธินี"]
-        }
-      };
-
-      const englishNames = {
-        male: ["Thanawat", "Nattapong", "Preecha", "Kittisak", "Warit"],
-        female: ["Sasipa", "Araya", "Niranicha", "Kanokwan", "Pimwara"],
-        unisex: ["Chanon", "Pimchanok", "Natthaphon", "Ariyaporn", "Kittima"]
-      };
-
-      const nicknames = {
-        male: ["เบน", "นัท", "บอส", "ปอนด์", "โบ้"],
-        female: ["นุ่น", "มิ้น", "ไอซ์", "ปูเป้", "มิน"],
-        unisex: ["น้อง", "มะลิ", "นก", "ป๊อป", "บี" ]
-      };
+    <script type="module">
+      import { thaiNames, englishNames, nicknames } from './data/names.js';
 
       function getRandomItem(list) {
         return list[Math.floor(Math.random() * list.length)];
