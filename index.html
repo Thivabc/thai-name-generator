@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <meta
     name="description"
-    content="Thai Name Generator - สุ่มชื่อไทย ชื่ออังกฤษ นามสกุล และเลขบัตรประชาชน"
+    content="Thai Name Generator - สุ่มชื่อไทย ชื่ออังกฤษ นามสกุล และข้อมูลจำลอง"
   />
 
   <title>Thai Name Generator</title>
@@ -15,22 +21,36 @@
       --primary: #7c3aed;
       --primary-dark: #5b21b6;
       --secondary: #ec4899;
+
       --bg: #f8f7ff;
-      --card: rgba(255, 255, 255, 0.92);
+      --card: rgba(255, 255, 255, 0.94);
+
       --text: #1f2937;
       --muted: #6b7280;
+
       --border: #e5e7eb;
+
       --success: #059669;
-      --shadow: 0 20px 60px rgba(76, 29, 149, 0.12);
+
+      --shadow:
+        0 20px 60px rgba(76, 29, 149, 0.12);
+
+      --shadow-hover:
+        0 24px 70px rgba(76, 29, 149, 0.16);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
+
       font-family:
         system-ui,
         -apple-system,
@@ -54,18 +74,41 @@
         var(--bg);
     }
 
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
     .container {
-      width: min(1050px, calc(100% - 32px));
+      width: min(
+        1050px,
+        calc(100% - 32px)
+      );
+
       margin: 0 auto;
     }
 
+    /* ========================================
+       HEADER
+    ======================================== */
+
     header {
       text-align: center;
-      padding: 58px 0 30px;
+
+      padding:
+        58px
+        0
+        30px;
     }
 
     .logo {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
 
@@ -73,129 +116,6 @@
       height: 64px;
 
       border-radius: 20px;
-
-      background: linear-gradient(
-        135deg,
-        var(--primary),
-        var(--secondary)
-      );
-
-      color: white;
-      font-size: 30px;
-
-      box-shadow:
-        0 12px 30px rgba(124, 58, 237, 0.25);
-
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      margin: 0;
-
-      font-size: clamp(32px, 6vw, 54px);
-
-      line-height: 1.05;
-
-      letter-spacing: -1.5px;
-
-      background: linear-gradient(
-        135deg,
-        #4c1d95,
-        #db2777
-      );
-
-      -webkit-background-clip: text;
-      background-clip: text;
-
-      color: transparent;
-    }
-
-    .subtitle {
-      color: var(--muted);
-
-      font-size: 16px;
-
-      margin: 14px auto 0;
-
-      max-width: 650px;
-    }
-
-    .panel {
-      background: var(--card);
-
-      border: 1px solid rgba(255, 255, 255, 0.8);
-
-      border-radius: 28px;
-
-      padding: 26px;
-
-      box-shadow: var(--shadow);
-
-      backdrop-filter: blur(10px);
-    }
-
-    .controls {
-      display: grid;
-
-      grid-template-columns:
-        1.2fr
-        1.2fr
-        1fr;
-
-      gap: 16px;
-
-      align-items: end;
-    }
-
-    .field label {
-      display: block;
-
-      font-size: 14px;
-
-      font-weight: 700;
-
-      margin-bottom: 8px;
-    }
-
-    select,
-    input {
-      width: 100%;
-
-      height: 48px;
-
-      border: 1px solid var(--border);
-
-      border-radius: 14px;
-
-      background: white;
-
-      color: var(--text);
-
-      padding: 0 14px;
-
-      font-size: 15px;
-
-      outline: none;
-
-      transition: 0.2s;
-    }
-
-    select:focus,
-    input:focus {
-      border-color: var(--primary);
-
-      box-shadow:
-        0 0 0 4px rgba(124, 58, 237, 0.1);
-    }
-
-    .generate-btn {
-      width: 100%;
-
-      height: 48px;
-
-      border: 0;
-
-      border-radius: 14px;
 
       background:
         linear-gradient(
@@ -206,34 +126,304 @@
 
       color: white;
 
-      font-size: 16px;
+      font-size: 30px;
+
+      box-shadow:
+        0 12px 30px
+        rgba(124, 58, 237, 0.25);
+
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+
+      font-size:
+        clamp(
+          34px,
+          6vw,
+          54px
+        );
+
+      line-height: 1.05;
+
+      letter-spacing: -1.5px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #4c1d95,
+          #db2777
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+
+    .subtitle {
+      color: var(--muted);
+
+      font-size: 17px;
+
+      margin:
+        14px
+        auto
+        0;
+
+      max-width: 680px;
+
+      line-height: 1.6;
+    }
+
+    /* ========================================
+       MAIN PANEL
+    ======================================== */
+
+    .panel {
+      background: var(--card);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.8);
+
+      border-radius: 28px;
+
+      padding: 26px;
+
+      box-shadow: var(--shadow);
+
+      backdrop-filter: blur(10px);
+
+      transition:
+        box-shadow 0.25s ease;
+    }
+
+    .panel:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* ========================================
+       CONTROLS
+    ======================================== */
+
+    .controls {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.4fr)
+        minmax(130px, 0.55fr);
+
+      gap: 18px;
+
+      align-items: end;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field label {
+      display: block;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      margin-bottom: 9px;
+    }
+
+    /* ========================================
+       NAME TYPE SELECTOR
+    ======================================== */
+
+    .name-type-selector {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 6px;
+
+      padding: 5px;
+
+      min-height: 54px;
+
+      background: #f3f0ff;
+
+      border:
+        1px solid
+        #e9e3ff;
+
+      border-radius: 16px;
+    }
+
+    .type-option {
+      position: relative;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
+
+      min-height: 44px;
+
+      border: 0;
+
+      border-radius: 12px;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      font-size: 14px;
 
       font-weight: 800;
 
       cursor: pointer;
 
+      transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+    }
+
+    .type-option:hover {
+      color: var(--primary-dark);
+
+      background:
+        rgba(255, 255, 255, 0.7);
+    }
+
+    .type-option:active {
+      transform: scale(0.98);
+    }
+
+    .type-option.active {
+      color: var(--primary-dark);
+
+      background: white;
+
       box-shadow:
-        0 10px 24px rgba(124, 58, 237, 0.22);
+        0 5px 15px
+        rgba(76, 29, 149, 0.10);
+    }
+
+    .type-flag {
+      font-size: 21px;
+
+      line-height: 1;
+    }
+
+    /* ========================================
+       NUMBER INPUT
+    ======================================== */
+
+    .number-field {
+      min-width: 0;
+    }
+
+    input[type="number"] {
+      width: 100%;
+
+      height: 54px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 16px;
+
+      background: white;
+
+      color: var(--text);
+
+      padding:
+        0
+        15px;
+
+      font-size: 16px;
+
+      outline: none;
 
       transition:
-        transform 0.15s,
-        box-shadow 0.15s;
+        0.2s ease;
+    }
+
+    input[type="number"]:focus {
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(124, 58, 237, 0.1);
+    }
+
+    /* ========================================
+       GENERATE BUTTON
+    ======================================== */
+
+    .generate-wrapper {
+      grid-column: 1 / -1;
+    }
+
+    .generate-btn {
+      width: 100%;
+
+      min-height: 56px;
+
+      border: 0;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      color: white;
+
+      font-size: 17px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 12px 26px
+        rgba(124, 58, 237, 0.22);
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        filter 0.15s ease;
     }
 
     .generate-btn:hover {
       transform: translateY(-2px);
 
       box-shadow:
-        0 14px 28px rgba(124, 58, 237, 0.28);
+        0 16px 32px
+        rgba(124, 58, 237, 0.28);
+
+      filter: brightness(1.03);
     }
 
     .generate-btn:active {
       transform: translateY(0);
+
+      box-shadow:
+        0 8px 18px
+        rgba(124, 58, 237, 0.20);
     }
 
-    .number-field {
-      max-width: 150px;
-    }
+    /* ========================================
+       RESULTS HEADER
+    ======================================== */
 
     .results-header {
       display: flex;
@@ -244,28 +434,41 @@
 
       gap: 16px;
 
-      margin: 30px 0 14px;
+      margin:
+        32px
+        0
+        16px;
     }
 
     .results-header h2 {
       margin: 0;
 
-      font-size: 22px;
+      font-size: 24px;
+
+      letter-spacing: -0.4px;
     }
 
     .count-badge {
+      flex-shrink: 0;
+
       color: var(--primary-dark);
 
       background: #ede9fe;
 
       border-radius: 999px;
 
-      padding: 6px 12px;
+      padding:
+        7px
+        14px;
 
-      font-size: 13px;
+      font-size: 14px;
 
-      font-weight: 700;
+      font-weight: 800;
     }
+
+    /* ========================================
+       RESULTS GRID
+    ======================================== */
 
     .results {
       display: grid;
@@ -276,84 +479,117 @@
           minmax(0, 1fr)
         );
 
-      gap: 12px;
+      gap: 14px;
     }
 
     .name-card {
       display: flex;
+
       flex-direction: column;
-      gap: 10px;
+
+      gap: 12px;
+
+      min-width: 0;
 
       background: white;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid
+        var(--border);
 
       border-radius: 18px;
 
-      padding: 16px 18px;
+      padding:
+        17px
+        18px;
 
       animation:
-        appear 0.25s ease both;
+        appear
+        0.25s
+        ease
+        both;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .name-card:hover {
+      transform: translateY(-2px);
+
+      border-color:
+        #ddd6fe;
+
+      box-shadow:
+        0 10px 30px
+        rgba(76, 29, 149, 0.08);
     }
 
     @keyframes appear {
       from {
         opacity: 0;
 
-        transform: translateY(5px);
+        transform:
+          translateY(7px);
       }
 
       to {
         opacity: 1;
 
-        transform: translateY(0);
+        transform:
+          translateY(0);
       }
     }
 
+    /* ========================================
+       NAME HEADER
+    ======================================== */
+
     .name-header {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
-      gap: 10px;
+
+      gap: 12px;
     }
 
     .name-info {
       min-width: 0;
+
+      flex: 1;
     }
 
     .name {
       font-size: 20px;
 
-      font-weight: 800;
+      font-weight: 850;
+
+      line-height: 1.35;
 
       overflow-wrap: anywhere;
     }
 
-    .detail-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 13.5px;
-      color: var(--muted);
-      background: #f9fafb;
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-
-    .detail-row span strong {
-      color: var(--text);
-    }
-
     .action-buttons {
       display: flex;
+
+      align-items: center;
+
       gap: 6px;
+
       flex: 0 0 auto;
     }
 
+    /* ========================================
+       COPY BUTTON
+    ======================================== */
+
     .copy-btn {
-      border: 1px solid var(--border);
+      border:
+        1px solid
+        var(--border);
 
       background: #fafafa;
 
@@ -361,25 +597,87 @@
 
       border-radius: 9px;
 
-      padding: 6px 10px;
+      padding:
+        7px
+        10px;
 
       cursor: pointer;
 
-      font-weight: 700;
+      font-weight: 750;
+
       font-size: 12px;
+
+      white-space: nowrap;
+
+      transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
     }
 
     .copy-btn:hover {
       background: #f3f4f6;
+
+      border-color: #d1d5db;
     }
 
     .copy-btn.copied {
       color: var(--success);
 
-      border-color: #a7f3d0;
+      border-color:
+        #a7f3d0;
 
-      background: #ecfdf5;
+      background:
+        #ecfdf5;
     }
+
+    /* ========================================
+       ID CARD ROW
+    ======================================== */
+
+    .detail-row {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      min-width: 0;
+
+      font-size: 13.5px;
+
+      color: var(--muted);
+
+      background: #f9fafb;
+
+      padding:
+        9px
+        11px;
+
+      border-radius: 11px;
+
+      border:
+        1px solid
+        var(--border);
+    }
+
+    .detail-row span {
+      min-width: 0;
+
+      overflow-wrap: anywhere;
+    }
+
+    .detail-row span strong {
+      color: var(--text);
+
+      letter-spacing: 0.3px;
+    }
+
+    /* ========================================
+       EMPTY
+    ======================================== */
 
     .empty {
       grid-column: 1 / -1;
@@ -388,13 +686,21 @@
 
       color: var(--muted);
 
-      padding: 36px 10px;
+      padding:
+        40px
+        10px;
     }
+
+    /* ========================================
+       TIP
+    ======================================== */
 
     .tip {
       margin-top: 20px;
 
-      padding: 14px 16px;
+      padding:
+        14px
+        16px;
 
       background: #faf5ff;
 
@@ -404,8 +710,16 @@
 
       font-size: 13px;
 
-      line-height: 1.6;
+      line-height: 1.7;
+
+      border:
+        1px solid
+        #f3e8ff;
     }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
 
     footer {
       text-align: center;
@@ -414,31 +728,279 @@
 
       font-size: 13px;
 
-      padding: 28px 0 40px;
+      line-height: 1.6;
+
+      padding:
+        28px
+        0
+        40px;
     }
 
-    @media (max-width: 760px) {
-      .controls {
-        grid-template-columns: 1fr;
+    /* ========================================
+       TABLET
+    ======================================== */
+
+    @media (max-width: 850px) {
+
+      .container {
+        width:
+          min(
+            100% - 24px,
+            1050px
+          );
       }
 
-      .number-field {
-        max-width: none;
+      .panel {
+        padding: 20px;
       }
 
       .results {
         grid-template-columns: 1fr;
       }
 
+    }
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media (max-width: 600px) {
+
+      .container {
+        width:
+          calc(100% - 20px);
+      }
+
+      header {
+        padding:
+          36px
+          0
+          22px;
+      }
+
+      .logo {
+        width: 58px;
+        height: 58px;
+
+        border-radius: 18px;
+
+        font-size: 27px;
+
+        margin-bottom: 14px;
+      }
+
+      h1 {
+        font-size:
+          clamp(
+            32px,
+            11vw,
+            44px
+          );
+
+        letter-spacing:
+          -1px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+
+        padding:
+          0
+          8px;
+      }
+
       .panel {
-        padding: 18px;
+        padding:
+          16px;
 
         border-radius: 22px;
       }
 
-      header {
-        padding-top: 38px;
+      .controls {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
       }
+
+      .name-type-selector {
+        min-height: 52px;
+
+        gap: 4px;
+
+        padding: 4px;
+
+        border-radius: 15px;
+      }
+
+      .type-option {
+        min-height: 44px;
+
+        padding:
+          0
+          8px;
+
+        font-size: 13px;
+      }
+
+      .type-flag {
+        font-size: 19px;
+      }
+
+      input[type="number"] {
+        height: 52px;
+      }
+
+      .generate-btn {
+        min-height: 54px;
+
+        font-size: 16px;
+      }
+
+      .results-header {
+        margin:
+          26px
+          0
+          14px;
+      }
+
+      .results-header h2 {
+        font-size: 21px;
+      }
+
+      .count-badge {
+        padding:
+          6px
+          11px;
+
+        font-size: 13px;
+      }
+
+      .name-card {
+        padding:
+          15px;
+
+        border-radius: 16px;
+      }
+
+      .name-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+      }
+
+      .name {
+        font-size: 19px;
+      }
+
+      .action-buttons {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 7px;
+      }
+
+      .copy-btn {
+        width: 100%;
+
+        min-height: 38px;
+
+        padding:
+          7px
+          8px;
+      }
+
+      .detail-row {
+        align-items: stretch;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        font-size: 13px;
+      }
+
+      .detail-row .copy-btn {
+        width: 100%;
+      }
+
+      .tip {
+        font-size: 12.5px;
+
+        padding:
+          13px
+          14px;
+      }
+
+      footer {
+        padding:
+          22px
+          0
+          30px;
+      }
+
+    }
+
+    /* ========================================
+       SMALL MOBILE
+    ======================================== */
+
+    @media (max-width: 390px) {
+
+      .container {
+        width:
+          calc(100% - 14px);
+      }
+
+      .panel {
+        padding: 13px;
+      }
+
+      .type-option {
+        gap: 5px;
+
+        font-size: 12px;
+      }
+
+      .type-flag {
+        font-size: 17px;
+      }
+
+      .results-header {
+        align-items: flex-start;
+      }
+
+      .results-header h2 {
+        font-size: 19px;
+      }
+
+    }
+
+    /* ========================================
+       REDUCED MOTION
+    ======================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+      }
+
     }
   </style>
 </head>
@@ -446,6 +1008,10 @@
 <body>
 
   <main class="container">
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
 
     <header>
 
@@ -461,67 +1027,86 @@
         class="subtitle"
         id="subtitle"
       >
-        สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม พร้อมเลขบัตรประชาชน
+        สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม
+        พร้อมเลขบัตรประชาชนจำลอง
       </p>
 
     </header>
 
 
+    <!-- ======================================
+         MAIN PANEL
+    ======================================= -->
+
     <section class="panel">
+
+
+      <!-- ====================================
+           CONTROLS
+      ===================================== -->
 
       <div class="controls">
 
+
         <!-- ประเภทชื่อ -->
+
         <div class="field">
 
           <label
-            for="nameType"
             id="nameTypeLabel"
           >
             ประเภทชื่อ
           </label>
 
-          <select id="nameType">
 
-            <option value="thai">
-              ชื่อไทย + นามสกุล
-            </option>
-
-            <option value="english">
-              ชื่ออังกฤษ + นามสกุล
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <!-- ภาษา -->
-        <div class="field">
-
-          <label
-            for="language"
-            id="languageLabel"
+          <div
+            class="name-type-selector"
+            role="group"
+            aria-label="ประเภทชื่อ"
           >
-            ภาษา
-          </label>
 
-          <select id="language">
+            <button
+              type="button"
+              class="type-option active"
+              data-type="thai"
+              aria-pressed="true"
+            >
 
-            <option value="th">
-              ไทย
-            </option>
+              <span class="type-flag">
+                🇹🇭
+              </span>
 
-            <option value="en">
-              English
-            </option>
+              <span>
+                ชื่อไทย
+              </span>
 
-          </select>
+            </button>
+
+
+            <button
+              type="button"
+              class="type-option"
+              data-type="english"
+              aria-pressed="false"
+            >
+
+              <span class="type-flag">
+                🇬🇧
+              </span>
+
+              <span>
+                English
+              </span>
+
+            </button>
+
+          </div>
 
         </div>
 
 
-        <!-- จำนวน -->
+        <!-- จำนวนชื่อ -->
+
         <div class="field number-field">
 
           <label
@@ -537,20 +1122,23 @@
             min="1"
             max="100"
             value="10"
+            inputmode="numeric"
+            aria-label="จำนวนชื่อ"
           />
 
         </div>
 
 
         <!-- ปุ่มสุ่ม -->
+
         <div
-          class="field"
-          style="grid-column: 1 / -1;"
+          class="field generate-wrapper"
         >
 
           <button
             class="generate-btn"
             id="generateBtn"
+            type="button"
           >
             ✨ สุ่มชื่อ
           </button>
@@ -560,7 +1148,10 @@
       </div>
 
 
-      <!-- หัวข้อผลลัพธ์ -->
+      <!-- ====================================
+           RESULTS HEADER
+      ===================================== -->
+
       <div class="results-header">
 
         <h2 id="resultsTitle">
@@ -577,7 +1168,10 @@
       </div>
 
 
-      <!-- ผลลัพธ์ -->
+      <!-- ====================================
+           RESULTS
+      ===================================== -->
+
       <div
         class="results"
         id="results"
@@ -587,31 +1181,40 @@
           class="empty"
           id="emptyState"
         >
-          กดปุ่ม "สุ่มชื่อ"
-          เพื่อสร้างชื่อที่คุณต้องการ
+          กำลังสร้างชื่อ...
         </div>
 
       </div>
 
 
-      <!-- Tip -->
+      <!-- ====================================
+           TIP
+      ===================================== -->
+
       <div
         class="tip"
         id="tip"
       >
         💡 เคล็ดลับ:
-        คุณสามารถเลือกประเภทชื่อและจำนวนที่ต้องการได้สูงสุด
-        100 ชื่อ พร้อมคัดลอกชื่อ นามสกุล หรือหมายเลขบัตรประชาชนไปใช้งานได้ทันที
+        เลือกประเภทชื่อที่ต้องการ
+        แล้วกำหนดจำนวนได้สูงสุด 100 ชื่อ
+        พร้อมคัดลอกชื่อ นามสกุล
+        หรือเลขบัตรประชาชนจำลองได้ทันที
       </div>
 
     </section>
 
 
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+
     <footer>
 
       Thai Name Generator
       ·
-      สร้างชื่อและข้อมูลจำลองในเบราว์เซอร์ของคุณ
+      สร้างชื่อและข้อมูลจำลอง
+      ในเบราว์เซอร์ของคุณ
 
     </footer>
 
@@ -620,9 +1223,9 @@
 
   <script>
 
-    /* =========================
-        ข้อมูลชื่อ
-    ========================= */
+    /* =====================================================
+       DATA
+    ===================================================== */
 
     const data = {
 
@@ -841,9 +1444,9 @@
     };
 
 
-    /* =========================
-        นามสกุลภาษาไทย
-    ========================= */
+    /* =====================================================
+       THAI SURNAMES
+    ===================================================== */
 
     const surnames = [
 
@@ -881,9 +1484,9 @@
     ];
 
 
-    /* =========================
-        English surnames
-    ========================= */
+    /* =====================================================
+       ENGLISH SURNAMES
+    ===================================================== */
 
     const englishSurnames = [
 
@@ -916,65 +1519,241 @@
     ];
 
 
-    /* =========================
-        Helper
-    ========================= */
+    /* =====================================================
+       ELEMENT HELPER
+    ===================================================== */
 
     const $ = (id) =>
       document.getElementById(id);
 
 
-    let currentLanguage = "th";
+    /* =====================================================
+       CURRENT TYPE
+    ===================================================== */
 
+    let currentType = "thai";
+
+
+    /* =====================================================
+       RANDOM ITEM
+    ===================================================== */
 
     function randomItem(array) {
 
       return array[
         Math.floor(
-          Math.random() * array.length
+          Math.random() *
+          array.length
         )
       ];
 
     }
 
-    // ฟังก์ชันสร้างเลขบัตรประชาชน 13 หลัก ที่ถูกต้องตามกฎ Checksum (แบบไม่มีขีด)
+
+    /* =====================================================
+       THAI ID CARD GENERATOR
+       13 DIGITS + CHECKSUM
+    ===================================================== */
+
     function generateThaiIdCard() {
-      let firstDigit = Math.floor(Math.random() * 8) + 1;
-      let digits = [firstDigit];
 
-      for (let i = 0; i < 11; i++) {
-        digits.push(Math.floor(Math.random() * 10));
+      // หลักแรก 1-8
+      const firstDigit =
+        Math.floor(
+          Math.random() * 8
+        ) + 1;
+
+
+      const digits = [
+        firstDigit
+      ];
+
+
+      // สร้างอีก 11 หลัก
+      for (
+        let i = 0;
+        i < 11;
+        i++
+      ) {
+
+        digits.push(
+          Math.floor(
+            Math.random() * 10
+          )
+        );
+
       }
 
+
+      // checksum
       let sum = 0;
-      for (let i = 0; i < 12; i++) {
-        sum += digits[i] * (13 - i);
+
+
+      for (
+        let i = 0;
+        i < 12;
+        i++
+      ) {
+
+        sum +=
+          digits[i] *
+          (13 - i);
+
       }
-      let mod = sum % 11;
-      let checkDigit = (11 - mod) % 10;
-      digits.push(checkDigit);
+
+
+      const mod =
+        sum % 11;
+
+
+      const checkDigit =
+        (11 - mod) % 10;
+
+
+      digits.push(
+        checkDigit
+      );
+
 
       return digits.join("");
+
     }
 
 
-    /* =========================
-        Generate names
-    ========================= */
+    /* =====================================================
+       UPDATE TYPE BUTTON UI
+    ===================================================== */
+
+    function updateTypeButtons() {
+
+      const buttons =
+        document.querySelectorAll(
+          ".type-option"
+        );
+
+
+      buttons.forEach(
+        (button) => {
+
+          const isActive =
+            button.dataset.type ===
+            currentType;
+
+
+          button.classList.toggle(
+            "active",
+            isActive
+          );
+
+
+          button.setAttribute(
+            "aria-pressed",
+            String(isActive)
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       UPDATE UI LANGUAGE
+    ===================================================== */
+
+    function updateInterface() {
+
+      const isEnglish =
+        currentType === "english";
+
+
+      $("subtitle").textContent =
+        isEnglish
+
+          ? "Generate English names and surnames with simulated ID numbers"
+
+          : "สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม พร้อมเลขบัตรประชาชนจำลอง";
+
+
+      $("nameTypeLabel").textContent =
+        isEnglish
+
+          ? "Name Type"
+
+          : "ประเภทชื่อ";
+
+
+      $("amountLabel").textContent =
+        isEnglish
+
+          ? "Number of Names"
+
+          : "จำนวนชื่อ";
+
+
+      $("generateBtn").textContent =
+        isEnglish
+
+          ? "✨ Generate Names"
+
+          : "✨ สุ่มชื่อ";
+
+
+      $("resultsTitle").textContent =
+        isEnglish
+
+          ? "Generated Names"
+
+          : "ชื่อที่สร้างขึ้น";
+
+
+      $("tip").textContent =
+        isEnglish
+
+          ? "💡 Tip: Choose a name type and generate up to 100 names. You can copy the name, surname, or simulated ID number instantly."
+
+          : "💡 เคล็ดลับ: เลือกประเภทชื่อที่ต้องการ แล้วกำหนดจำนวนได้สูงสุด 100 ชื่อ พร้อมคัดลอกชื่อ นามสกุล หรือเลขบัตรประชาชนจำลองได้ทันที";
+
+
+      // อัปเดต aria-label
+      const selector =
+        document.querySelector(
+          ".name-type-selector"
+        );
+
+
+      selector.setAttribute(
+        "aria-label",
+
+        isEnglish
+          ? "Name type"
+          : "ประเภทชื่อ"
+      );
+
+    }
+
+
+    /* =====================================================
+       GENERATE NAMES
+    ===================================================== */
 
     function generateNames() {
 
       const type =
-        $("nameType").value;
+        currentType;
 
-      const lang =
-        $("language").value;
+
+      const isEnglish =
+        type === "english";
+
 
       const amount =
         Math.min(
           100,
+
           Math.max(
             1,
+
             Number(
               $("amount").value
             ) || 1
@@ -991,8 +1770,10 @@
 
 
       const surnameList =
-        lang === "en"
+        isEnglish
+
           ? englishSurnames
+
           : surnames;
 
 
@@ -1011,7 +1792,7 @@
 
 
       const maxAttempts =
-        amount * 20;
+        amount * 50;
 
 
       while (
@@ -1023,15 +1804,25 @@
 
 
         const person =
-          randomItem(firstNames);
+          randomItem(
+            firstNames
+          );
 
 
         const surname =
-          randomItem(surnameList);
+          randomItem(
+            surnameList
+          );
 
 
-        const firstNameText = person[0];
-        const surnameText = surname;
+        const firstNameText =
+          person[0];
+
+
+        const surnameText =
+          surname;
+
+
         const fullName =
           `${firstNameText} ${surnameText}`;
 
@@ -1049,9 +1840,18 @@
           fullName
         );
 
-        // สุ่มหมายเลขบัตรประชาชน (แบบไม่มีขีด)
-        const idCardNumber = generateThaiIdCard();
 
+        /* --------------------------------
+           Generate simulated ID
+        -------------------------------- */
+
+        const idCardNumber =
+          generateThaiIdCard();
+
+
+        /* --------------------------------
+           Card
+        -------------------------------- */
 
         const card =
           document.createElement(
@@ -1070,72 +1870,235 @@
           )}ms`;
 
 
-        // ส่วนแสดงชื่อ-นามสกุล พร้อมปุ่มคัดลอกชื่อ/นามสกุล
-        const nameHeader = document.createElement("div");
-        nameHeader.className = "name-header";
+        /* --------------------------------
+           Name Header
+        -------------------------------- */
+
+        const nameHeader =
+          document.createElement(
+            "div"
+          );
+
+
+        nameHeader.className =
+          "name-header";
+
+
+        /* --------------------------------
+           Name
+        -------------------------------- */
 
         const info =
           document.createElement(
             "div"
           );
 
+
         info.className =
           "name-info";
+
 
         const name =
           document.createElement(
             "div"
           );
 
+
         name.className =
           "name";
 
+
         name.textContent =
           fullName;
+
 
         info.append(
           name
         );
 
-        const actionButtons = document.createElement("div");
-        actionButtons.className = "action-buttons";
 
-        // ปุ่มคัดลอกเฉพาะชื่อ
-        const copyFirstBtn = document.createElement("button");
-        copyFirstBtn.className = "copy-btn";
-        copyFirstBtn.type = "button";
-        copyFirstBtn.textContent = lang === "en" ? "Copy Name" : "คัดลอกชื่อ";
-        copyFirstBtn.addEventListener("click", () =>
-          copyText(firstNameText, copyFirstBtn, lang, "name")
+        /* --------------------------------
+           Action Buttons
+        -------------------------------- */
+
+        const actionButtons =
+          document.createElement(
+            "div"
+          );
+
+
+        actionButtons.className =
+          "action-buttons";
+
+
+        /* --------------------------------
+           Copy First Name
+        -------------------------------- */
+
+        const copyFirstBtn =
+          document.createElement(
+            "button"
+          );
+
+
+        copyFirstBtn.className =
+          "copy-btn";
+
+
+        copyFirstBtn.type =
+          "button";
+
+
+        copyFirstBtn.textContent =
+          isEnglish
+
+            ? "Copy Name"
+
+            : "คัดลอกชื่อ";
+
+
+        copyFirstBtn.addEventListener(
+          "click",
+          () =>
+            copyText(
+              firstNameText,
+              copyFirstBtn,
+              isEnglish,
+              "name"
+            )
         );
 
-        // ปุ่มคัดลอกเฉพาะนามสกุล
-        const copySurnameBtn = document.createElement("button");
-        copySurnameBtn.className = "copy-btn";
-        copySurnameBtn.type = "button";
-        copySurnameBtn.textContent = lang === "en" ? "Copy Surname" : "คัดลอกนามสกุล";
-        copySurnameBtn.addEventListener("click", () =>
-          copyText(surnameText, copySurnameBtn, lang, "surname")
+
+        /* --------------------------------
+           Copy Surname
+        -------------------------------- */
+
+        const copySurnameBtn =
+          document.createElement(
+            "button"
+          );
+
+
+        copySurnameBtn.className =
+          "copy-btn";
+
+
+        copySurnameBtn.type =
+          "button";
+
+
+        copySurnameBtn.textContent =
+          isEnglish
+
+            ? "Copy Surname"
+
+            : "คัดลอกนามสกุล";
+
+
+        copySurnameBtn.addEventListener(
+          "click",
+          () =>
+            copyText(
+              surnameText,
+              copySurnameBtn,
+              isEnglish,
+              "surname"
+            )
         );
 
-        actionButtons.append(copyFirstBtn, copySurnameBtn);
-        nameHeader.append(info, actionButtons);
 
-
-        // บรรทัดเลขบัตรประชาชน
-        const idRow = document.createElement("div");
-        idRow.className = "detail-row";
-        idRow.innerHTML = `<span>${lang === "en" ? "ID Card:" : "เลขบัตรประชาชน:"} <strong>${idCardNumber}</strong></span>`;
-        
-        const copyIdBtn = document.createElement("button");
-        copyIdBtn.className = "copy-btn";
-        copyIdBtn.type = "button";
-        copyIdBtn.textContent = lang === "en" ? "Copy ID" : "คัดลอกเลขบัตร";
-        copyIdBtn.addEventListener("click", () =>
-          copyText(idCardNumber, copyIdBtn, lang, "idcard")
+        actionButtons.append(
+          copyFirstBtn,
+          copySurnameBtn
         );
-        idRow.appendChild(copyIdBtn);
 
+
+        nameHeader.append(
+          info,
+          actionButtons
+        );
+
+
+        /* --------------------------------
+           ID Row
+        -------------------------------- */
+
+        const idRow =
+          document.createElement(
+            "div"
+          );
+
+
+        idRow.className =
+          "detail-row";
+
+
+        const idText =
+          document.createElement(
+            "span"
+          );
+
+
+        idText.innerHTML = `
+          ${
+            isEnglish
+              ? "ID Card:"
+              : "เลขบัตรประชาชน:"
+          }
+
+          <strong>
+            ${idCardNumber}
+          </strong>
+        `;
+
+
+        /* --------------------------------
+           Copy ID Button
+        -------------------------------- */
+
+        const copyIdBtn =
+          document.createElement(
+            "button"
+          );
+
+
+        copyIdBtn.className =
+          "copy-btn";
+
+
+        copyIdBtn.type =
+          "button";
+
+
+        copyIdBtn.textContent =
+          isEnglish
+
+            ? "Copy ID"
+
+            : "คัดลอกเลขบัตร";
+
+
+        copyIdBtn.addEventListener(
+          "click",
+          () =>
+            copyText(
+              idCardNumber,
+              copyIdBtn,
+              isEnglish,
+              "idcard"
+            )
+        );
+
+
+        idRow.append(
+          idText,
+          copyIdBtn
+        );
+
+
+        /* --------------------------------
+           Append Card
+        -------------------------------- */
 
         card.append(
           nameHeader,
@@ -1150,10 +2113,14 @@
       }
 
 
+      /* --------------------------------
+         Update Count
+      -------------------------------- */
+
       $("countBadge")
         .textContent =
         `${used.size} ${
-          lang === "en"
+          isEnglish
             ? "names"
             : "ชื่อ"
         }`;
@@ -1161,24 +2128,25 @@
     }
 
 
-    /* =========================
-        Copy
-    ========================= */
+    /* =====================================================
+       COPY TEXT
+    ===================================================== */
 
     async function copyText(
       text,
       button,
-      lang,
+      isEnglish,
       type
     ) {
 
       try {
 
-        await navigator
-          .clipboard
+        await navigator.clipboard
           .writeText(text);
 
-      } catch {
+      }
+
+      catch {
 
         const textarea =
           document.createElement(
@@ -1190,10 +2158,17 @@
           text;
 
 
-        document.body
-          .appendChild(
-            textarea
-          );
+        textarea.style.position =
+          "fixed";
+
+
+        textarea.style.opacity =
+          "0";
+
+
+        document.body.appendChild(
+          textarea
+        );
 
 
         textarea.select();
@@ -1213,14 +2188,70 @@
         button.textContent;
 
 
-      if (lang === "en") {
-        if (type === "name") button.textContent = "Name Copied ✓";
-        else if (type === "surname") button.textContent = "Surname Copied ✓";
-        else if (type === "idcard") button.textContent = "ID Copied ✓";
-      } else {
-        if (type === "name") button.textContent = "คัดลอกชื่อแล้ว ✓";
-        else if (type === "surname") button.textContent = "คัดลอกนามสกุลแล้ว ✓";
-        else if (type === "idcard") button.textContent = "คัดลอกเลขบัตรแล้ว ✓";
+      /* --------------------------------
+         Copied text
+      -------------------------------- */
+
+      if (isEnglish) {
+
+        if (
+          type === "name"
+        ) {
+
+          button.textContent =
+            "Name Copied ✓";
+
+        }
+
+        else if (
+          type === "surname"
+        ) {
+
+          button.textContent =
+            "Surname Copied ✓";
+
+        }
+
+        else if (
+          type === "idcard"
+        ) {
+
+          button.textContent =
+            "ID Copied ✓";
+
+        }
+
+      }
+
+      else {
+
+        if (
+          type === "name"
+        ) {
+
+          button.textContent =
+            "คัดลอกชื่อแล้ว ✓";
+
+        }
+
+        else if (
+          type === "surname"
+        ) {
+
+          button.textContent =
+            "คัดลอกนามสกุลแล้ว ✓";
+
+        }
+
+        else if (
+          type === "idcard"
+        ) {
+
+          button.textContent =
+            "คัดลอกเลขบัตรแล้ว ✓";
+
+        }
+
       }
 
 
@@ -1228,6 +2259,10 @@
         "copied"
       );
 
+
+      /* --------------------------------
+         Reset button
+      -------------------------------- */
 
       setTimeout(
         () => {
@@ -1241,118 +2276,62 @@
           );
 
         },
+
         1400
       );
 
     }
 
 
-    /* =========================
-        Language
-    ========================= */
+    /* =====================================================
+       TYPE BUTTON EVENTS
+    ===================================================== */
 
-    function updateLanguage() {
+    document
+      .querySelectorAll(
+        ".type-option"
+      )
+      .forEach(
+        (button) => {
 
-      currentLanguage =
-        $("language").value;
+          button.addEventListener(
+            "click",
+            () => {
 
-
-      const en =
-        currentLanguage === "en";
-
-
-      $("subtitle")
-        .textContent =
-        en
-          ? "Generate Thai names, English names, and ID card numbers instantly"
-          : "สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม พร้อมเลขบัตรประชาชน";
+              const newType =
+                button.dataset.type;
 
 
-      $("nameTypeLabel")
-        .textContent =
-        en
-          ? "Name Type"
-          : "ประเภทชื่อ";
+              if (
+                newType ===
+                currentType
+              ) {
+
+                return;
+
+              }
 
 
-      $("languageLabel")
-        .textContent =
-        en
-          ? "Language"
-          : "ภาษา";
+              currentType =
+                newType;
 
 
-      $("amountLabel")
-        .textContent =
-        en
-          ? "Number of Names"
-          : "จำนวนชื่อ";
+              updateTypeButtons();
+
+              updateInterface();
+
+              generateNames();
+
+            }
+          );
+
+        }
+      );
 
 
-      $("generateBtn")
-        .textContent =
-        en
-          ? "✨ Generate Names"
-          : "✨ สุ่มชื่อ";
-
-
-      $("resultsTitle")
-        .textContent =
-        en
-          ? "Generated Names"
-          : "ชื่อที่สร้างขึ้น";
-
-
-      $("tip")
-        .textContent =
-        en
-          ? "💡 Tip: Choose a name type and generate up to 100 names. Click to copy name, surname, or ID card number instantly."
-          : "💡 เคล็ดลับ: คุณสามารถเลือกประเภทชื่อและจำนวนที่ต้องการได้สูงสุด 100 ชื่อ พร้อมคัดลอกชื่อ นามสกุล หรือหมายเลขบัตรประชาชนไปใช้งานได้ทันที";
-
-
-      const options = {
-
-        thai:
-          en
-            ? "Thai Name + Surname"
-            : "ชื่อไทย + นามสกุล",
-
-        english:
-          en
-            ? "English Name + Surname"
-            : "ชื่ออังกฤษ + นามสกุล"
-
-      };
-
-
-      $("nameType")
-        .options[0]
-        .textContent =
-        options.thai;
-
-
-      $("nameType")
-        .options[1]
-        .textContent =
-        options.english;
-
-
-      if (
-        $("results")
-          .children
-          .length
-      ) {
-
-        generateNames();
-
-      }
-
-    }
-
-
-    /* =========================
-        Events
-    ========================= */
+    /* =====================================================
+       GENERATE BUTTON
+    ===================================================== */
 
     $("generateBtn")
       .addEventListener(
@@ -1361,31 +2340,9 @@
       );
 
 
-    $("language")
-      .addEventListener(
-        "change",
-        updateLanguage
-      );
-
-
-    $("nameType")
-      .addEventListener(
-        "change",
-        () => {
-
-          if (
-            $("results")
-              .children
-              .length
-          ) {
-
-            generateNames();
-
-          }
-
-        }
-      );
-
+    /* =====================================================
+       AMOUNT ENTER
+    ===================================================== */
 
     $("amount")
       .addEventListener(
@@ -1393,7 +2350,8 @@
         (event) => {
 
           if (
-            event.key === "Enter"
+            event.key ===
+            "Enter"
           ) {
 
             generateNames();
@@ -1404,13 +2362,51 @@
       );
 
 
-    /* =========================
-        Initial generation
-    ========================= */
+    /* =====================================================
+       VALIDATE AMOUNT
+    ===================================================== */
+
+    $("amount")
+      .addEventListener(
+        "change",
+        () => {
+
+          let value =
+            Number(
+              $("amount").value
+            ) || 1;
+
+
+          value =
+            Math.min(
+              100,
+              Math.max(
+                1,
+                value
+              )
+            );
+
+
+          $("amount").value =
+            value;
+
+        }
+      );
+
+
+    /* =====================================================
+       INITIAL
+       GENERATION
+    ===================================================== */
+
+    updateTypeButtons();
+
+    updateInterface();
 
     generateNames();
 
   </script>
 
 </body>
+
 </html>
