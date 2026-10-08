@@ -14,6 +14,15 @@
     content="Thai Name Generator - สุ่มชื่อไทย ชื่ออังกฤษ นามสกุล และข้อมูลจำลอง"
   />
 
+  <meta name="theme-color" content="#7c3aed" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Thai Name Generator" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237c3aed'/%3E%3Ctext x='50' y='65' font-size='60' font-weight='bold' fill='white' text-anchor='middle' font-family='system-ui'%3E🇹%3C/text%3E%3C/svg%3E" />
+  <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237c3aed'/%3E%3Ctext x='50' y='65' font-size='60' font-weight='bold' fill='white' text-anchor='middle' font-family='system-ui'%3E🇹%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='45' fill='%237c3aed'/%3E%3Ctext x='90' y='125' font-size='110' font-weight='bold' fill='white' text-anchor='middle' font-family='system-ui'%3E🇹%3C/text%3E%3C/svg%3E" />
+
   <title>Thai Name Generator</title>
 
   <style>
@@ -1006,1550 +1015,168 @@
 </head>
 
 <body>
-
-  <main class="container">
-
-    <!-- ======================================
-         HEADER
-    ======================================= -->
-
+  <div class="container">
     <header>
-
-      <div class="logo">
-        ✦
-      </div>
-
-      <h1>
-        Thai Name Generator
-      </h1>
-
-      <p
-        class="subtitle"
-        id="subtitle"
-      >
-        สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม
-        พร้อมเลขบัตรประชาชนจำลอง
+      <div class="logo">🇹🇭</div>
+      <h1>Thai Name Generator</h1>
+      <p class="subtitle">
+        สร้างชื่อไทย ชื่ออังกฤษ และชื่อเล่นอย่างสุ่ม
       </p>
-
     </header>
 
-
-    <!-- ======================================
-         MAIN PANEL
-    ======================================= -->
-
-    <section class="panel">
-
-
-      <!-- ====================================
-           CONTROLS
-      ===================================== -->
-
+    <div class="panel">
       <div class="controls">
-
-
-        <!-- ประเภทชื่อ -->
-
         <div class="field">
-
-          <label
-            id="nameTypeLabel"
-          >
-            ประเภทชื่อ
-          </label>
-
-
-          <div
-            class="name-type-selector"
-            role="group"
-            aria-label="ประเภทชื่อ"
-          >
-
-            <button
-              type="button"
-              class="type-option active"
-              data-type="thai"
-              aria-pressed="true"
-            >
-
-              <span class="type-flag">
-                🇹🇭
-              </span>
-
-              <span>
-                ชื่อไทย
-              </span>
-
+          <label for="type">ประเภทชื่อ</label>
+          <div class="name-type-selector">
+            <button type="button" class="type-option active" data-type="thai">
+              <span class="type-flag">🇹🇭</span>
+              ไทย
             </button>
-
-
-            <button
-              type="button"
-              class="type-option"
-              data-type="english"
-              aria-pressed="false"
-            >
-
-              <span class="type-flag">
-                🇬🇧
-              </span>
-
-              <span>
-                English
-              </span>
-
+            <button type="button" class="type-option" data-type="english">
+              <span class="type-flag">🇬🇧</span>
+              English
             </button>
-
           </div>
-
         </div>
-
-
-        <!-- จำนวนชื่อ -->
 
         <div class="field number-field">
-
-          <label
-            for="amount"
-            id="amountLabel"
-          >
-            จำนวนชื่อ
-          </label>
-
+          <label for="count">จำนวนชื่อ</label>
           <input
-            id="amount"
             type="number"
+            id="count"
             min="1"
-            max="100"
-            value="10"
-            inputmode="numeric"
-            aria-label="จำนวนชื่อ"
+            max="20"
+            value="2"
+            placeholder="จำนวนชื่อ"
           />
-
         </div>
 
-
-        <!-- ปุ่มสุ่ม -->
-
-        <div
-          class="field generate-wrapper"
-        >
-
-          <button
-            class="generate-btn"
-            id="generateBtn"
-            type="button"
-          >
-            ✨ สุ่มชื่อ
+        <div class="generate-wrapper">
+          <button type="button" class="generate-btn" id="generateBtn">
+            สุ่มชื่อ ✨
           </button>
-
         </div>
-
       </div>
+    </div>
 
-
-      <!-- ====================================
-           RESULTS HEADER
-      ===================================== -->
-
-      <div class="results-header">
-
-        <h2 id="resultsTitle">
-          ชื่อที่สร้างขึ้น
-        </h2>
-
-        <span
-          class="count-badge"
-          id="countBadge"
-        >
-          0 ชื่อ
-        </span>
-
+    <div id="results" class="results" style="display: none;">
+      <div class="results-header" style="grid-column: 1 / -1;">
+        <h2>ผลลัพธ์ 🎯</h2>
+        <span class="count-badge" id="countBadge">0</span>
       </div>
+    </div>
 
+    <div class="empty" id="empty" style="display: none;">
+      กรุณากด "สุ่มชื่อ" เพื่อเริ่มต้น
+    </div>
 
-      <!-- ====================================
-           RESULTS
-      ===================================== -->
+    <div class="tip">
+      💡 <strong>เคล็ดลับ:</strong> คลิก "คัดลอก" เพื่อคัดลอกชื่อไปยังคลิปบอร์ด
+    </div>
+  </div>
 
-      <div
-        class="results"
-        id="results"
-      >
+  <footer>
+    <p>
+      🇹🇭 Thai Name Generator | Created with ❤️ by
+      <a href="https://github.com/Thivabc" target="_blank" style="color: var(--primary); text-decoration: none;">@Thivabc</a>
+    </p>
+    <p style="margin: 8px 0 0; font-size: 12px; color: var(--muted);">
+      © 2024 All rights reserved
+    </p>
+  </footer>
 
-        <div
-          class="empty"
-          id="emptyState"
-        >
-          กำลังสร้างชื่อ...
-        </div>
+  <script type="module">
+    import { thaiNames, englishNames } from './data/names.js';
 
-      </div>
+    const generateBtn = document.getElementById('generateBtn');
+    const countInput = document.getElementById('count');
+    const resultsContainer = document.getElementById('results');
+    const emptyState = document.getElementById('empty');
+    const countBadge = document.getElementById('countBadge');
+    const typeButtons = document.querySelectorAll('.type-option');
 
+    let currentType = 'thai';
 
-      <!-- ====================================
-           TIP
-      ===================================== -->
+    // Type selection
+    typeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        typeButtons.forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        currentType = button.dataset.type;
+      });
+    });
 
-      <div
-        class="tip"
-        id="tip"
-      >
-        💡 เคล็ดลับ:
-        เลือกประเภทชื่อที่ต้องการ
-        แล้วกำหนดจำนวนได้สูงสุด 100 ชื่อ
-        พร้อมคัดลอกชื่อ นามสกุล
-        หรือเลขบัตรประชาชนจำลองได้ทันที
-      </div>
+    function getRandomName(names) {
+      const keys = Object.keys(names);
+      const genderKey = keys[Math.floor(Math.random() * keys.length)];
+      const gender = names[genderKey];
 
-    </section>
+      const styleKeys = Object.keys(gender);
+      const styleKey = styleKeys[Math.floor(Math.random() * styleKeys.length)];
+      const nameArray = gender[styleKey];
 
-
-    <!-- ======================================
-         FOOTER
-    ======================================= -->
-
-    <footer>
-
-      Thai Name Generator
-      ·
-      สร้างชื่อและข้อมูลจำลอง
-      ในเบราว์เซอร์ของคุณ
-
-    </footer>
-
-  </main>
-
-
-  <script>
-
-    /* =====================================================
-       DATA
-    ===================================================== */
-
-    const data = {
-
-      /* ===================================================
-         THAI FIRST NAMES
-      =================================================== */
-
-      thai: {
-
-        first: [
-
-          "กวิน",
-          "กิตติ",
-          "ธนกร",
-          "ณัฐวุฒิ",
-          "ภูมิพัฒน์",
-          "ธีรภัทร",
-          "ปัญญา",
-          "วรินทร",
-          "ศุภกร",
-          "ภัทรพล",
-          "อริสา",
-          "พิมพ์ชนก",
-          "ณิชา",
-          "ชลธิชา",
-          "นภัสสร",
-          "กัญญารัตน์",
-          "ปภาดา",
-          "วริศรา",
-          "ศิริพร",
-          "ธัญชนก",
-
-          "ก้องภพ",
-          "กฤติน",
-          "กฤตภาส",
-          "กฤษณะ",
-          "กวินทร์",
-          "คณิน",
-          "คณพศ",
-          "จิรายุ",
-          "จิรภัทร",
-          "จิรวัฒน์",
-          "ชยพล",
-          "ชยุต",
-          "ชานนท์",
-          "ณภัทร",
-          "ณัฐพงษ์",
-          "ณัฐพล",
-          "ณัฐดนัย",
-          "ดนัย",
-          "ธนกฤต",
-          "ธนภัทร",
-          "ธนวัฒน์",
-          "ธนดล",
-          "ธีรเดช",
-          "ธีรพัฒน์",
-          "นที",
-          "นนทกร",
-          "นนทวัฒน์",
-          "ปกรณ์",
-          "ปณิธาน",
-          "ปรเมศวร์",
-          "พชร",
-          "พงศกร",
-          "พีรพัฒน์",
-          "ภาคภูมิ",
-          "ภูริณัฐ",
-          "ภูวเดช",
-          "รชต",
-          "รณภพ",
-          "รวิภาส",
-          "วชิรวิทย์",
-          "วรพล",
-          "วรเมธ",
-          "ศรัณย์",
-          "ศุภณัฐ",
-          "สิรภพ",
-          "สุรศักดิ์",
-          "อธิป",
-          "อภิวัฒน์",
-          "อนุชา",
-          "อัครพล",
-          "อิทธิกร",
-
-          "กมลชนก",
-          "กมลวรรณ",
-          "กัญญาณัฐ",
-          "กัญญาภัค",
-          "กานต์พิชชา",
-          "ขวัญชนก",
-          "ขวัญฤดี",
-          "จิราภา",
-          "จิรัชยา",
-          "ชญานิศ",
-          "ชลลดา",
-          "ชนากานต์",
-          "ชนัญชิดา",
-          "ชุติมา",
-          "ณัชชา",
-          "ณัฐธิดา",
-          "ณิชาภัทร",
-          "ดาริน",
-          "ธัญญารัตน์",
-          "ธิดารัตน์",
-          "นลิน",
-          "นลินี",
-          "นภสร",
-          "นฤมล",
-          "ปณิตา",
-          "ปาริฉัตร",
-          "พชรพร",
-          "พัชราภา",
-          "พิมพ์ลภัส",
-          "พิชชาภา",
-          "พิชญาภา",
-          "ภัทรวดี",
-          "มณีรัตน์",
-          "รินรดา",
-          "รมิตา",
-          "ลลิตา",
-          "วรัญญา",
-          "วาสนา",
-          "ศศิธร",
-          "ศศิวิมล",
-          "ศิรินภา",
-          "สิริกัญญา",
-          "สุชาดา",
-          "สุภัสสรา",
-          "สุพิชญา",
-          "อริสรา",
-          "อรปรียา",
-          "อัญชิสา",
-          "อัญญารินทร์",
-          "ไอรดา"
-
-        ]
-
-      },
-
-
-      /* ===================================================
-         ENGLISH FIRST NAMES
-      =================================================== */
-
-      english: {
-
-        first: [
-
-          "Oliver",
-          "George",
-          "Harry",
-          "Jack",
-          "Jacob",
-          "Noah",
-          "Charlie",
-          "Muhammad",
-          "Thomas",
-          "Oscar",
-          "William",
-          "Leo",
-          "Alfie",
-          "Henry",
-          "Joshua",
-          "Freddie",
-          "Archie",
-          "Ethan",
-          "Isaac",
-          "Edward",
-          "Lucas",
-          "Arthur",
-          "Teddy",
-          "Theo",
-          "Max",
-          "Theodore",
-          "Finley",
-          "Alexander",
-          "Adam",
-          "Joseph",
-          "James",
-          "Harvey",
-          "Elijah",
-          "John",
-          "Charles",
-          "Hudson",
-          "Emmett",
-          "Benjamin",
-          "Daniel",
-          "Samuel",
-          "Dylan",
-          "Harrison",
-          "Riley",
-          "Toby",
-          "Sebastian",
-          "Reuben",
-          "Harley",
-          "Louis",
-          "Archie",
-          "Frankie",
-
-          "Olivia",
-          "Amelia",
-          "Isla",
-          "Emily",
-          "Ava",
-          "Isabella",
-          "Lily",
-          "Ivy",
-          "Freya",
-          "Florence",
-          "Poppy",
-          "Elsie",
-          "Charlotte",
-          "Isabelle",
-          "Sophie",
-          "Sienna",
-          "Maya",
-          "Sophia",
-          "Phoebe",
-          "Alice",
-          "Ella",
-          "Evie",
-          "Matilda",
-          "Ruby",
-          "Jessica",
-          "Daisy",
-          "Emilia",
-          "Chloe",
-          "Grace",
-          "Sofia",
-          "Mia",
-          "Evelyn",
-          "Rosie",
-          "Willow",
-          "Millie",
-          "Maisie",
-          "Esme",
-          "Layla",
-          "Ada",
-          "Elizabeth",
-          "Lucy",
-          "Ellie",
-          "Abigail",
-          "Bonnie",
-          "Hannah",
-          "Isabel",
-          "Eleanor",
-          "Harper",
-          "Florence",
-          "Elsie"
-
-        ]
-
-      }
-
-    };
-
-
-    /* =====================================================
-       THAI SURNAMES
-    ===================================================== */
-
-    const surnames = [
-
-      "วัฒนกุล",
-      "ศิริวัฒน์",
-      "เจริญทรัพย์",
-      "รุ่งเรืองกิจ",
-      "พัฒนกุล",
-      "สุวรรณดี",
-      "บุญญานนท์",
-      "สิริพงศ์",
-      "ธนากรณ์",
-      "วงศ์วัฒนา",
-      "กิตติไพศาล",
-      "ศุภวัฒน์",
-      "อนันต์ชัย",
-      "พรหมรักษา",
-      "ภัทรานนท์",
-      "ชัยมงคล",
-      "ทรัพย์เจริญ",
-      "วิริยะกุล",
-      "อุดมศรี",
-      "มงคลชัย",
-      "รุ่งโรจน์",
-      "วรากุล",
-      "ปัญญาวัฒน์",
-      "ศรีสุวรรณ",
-      "ธรรมรักษ์",
-      "พงศ์ไพศาล",
-      "เจริญวัฒนา",
-      "สิริกุล",
-      "อัครเดช",
-      "ธนพัฒน์",
-
-      "กาญจนกุล",
-      "กิตติวัฒน์",
-      "กุลธร",
-      "จันทร์ประเสริฐ",
-      "จิรพัฒน์",
-      "เจริญวงศ์",
-      "ชูศักดิ์",
-      "ณรงค์ชัย",
-      "ดวงมณี",
-      "ทองดี",
-      "ทวีทรัพย์",
-      "ธนากุล",
-      "ธนวัฒน์",
-      "นาคะวัฒน์",
-      "บุญช่วย",
-      "บุญเกิด",
-      "บุญเลิศ",
-      "บุญส่ง",
-      "บุญมี",
-      "ประเสริฐศรี",
-      "พงษ์พานิช",
-      "พัฒนชัย",
-      "พิทักษ์วงศ์",
-      "ภักดีวงศ์",
-      "ภูมิรักษ์",
-      "มณีรัตน์",
-      "รัตนวงศ์",
-      "รุ่งสวัสดิ์",
-      "ลิ้มเจริญ",
-      "วรเดช",
-      "วัฒนชัย",
-      "วิชัยวงศ์",
-      "ศรีเจริญ",
-      "ศรีวิชัย",
-      "ศุภกิจ",
-      "สมบูรณ์",
-      "สมศักดิ์",
-      "สุทธิวงศ์",
-      "สุวรรณชาติ",
-      "เสนารักษ์",
-      "หิรัญวงศ์",
-      "อนันตชัย",
-      "อุดมกิจ",
-      "อุดมพงศ์",
-      "เอกชัย",
-      "ไพศาลวงศ์",
-      "ไชยวัฒน์",
-      "โชติช่วง",
-      "เมธาวัฒน์",
-      "รัตนกุล",
-      "สิริวัฒนา"
-
-    ];
-
-
-    /* =====================================================
-       ENGLISH SURNAMES
-    ===================================================== */
-
-    const englishSurnames = [
-
-      "Smith",
-      "Jones",
-      "Taylor",
-      "Brown",
-      "Williams",
-      "Wilson",
-      "Johnson",
-      "Davies",
-      "Patel",
-      "Robinson",
-      "Wright",
-      "Thompson",
-      "Evans",
-      "Walker",
-      "White",
-      "Roberts",
-      "Green",
-      "Hall",
-      "Thomas",
-      "Clarke",
-      "Jackson",
-      "Wood",
-      "Harris",
-      "Edwards",
-      "Turner",
-      "Martin",
-      "Cooper",
-      "Hill",
-      "Ward",
-      "Morris",
-      "Moore",
-      "Clark",
-      "Lee",
-      "King",
-      "Baker",
-      "Harrison",
-      "Morgan",
-      "Allen",
-      "James",
-      "Scott",
-      "Phillips",
-      "Watson",
-      "Davis",
-      "Parker",
-      "Price",
-      "Bennett",
-      "Young",
-      "Griffiths",
-      "Mitchell",
-      "Kelly",
-
-      "Cook",
-      "Carter",
-      "Richardson",
-      "Bailey",
-      "Collins",
-      "Bell",
-      "Shaw",
-      "Murphy",
-      "Miller",
-      "Cox",
-      "Richards",
-      "Khan",
-      "Marshall",
-      "Anderson",
-      "Simpson",
-      "Ellis",
-      "Adams",
-      "Singh",
-      "Begum",
-      "Wilkinson",
-      "Foster",
-      "Chapman",
-      "Powell",
-      "Webb",
-      "Rogers",
-      "Gray",
-      "Mason",
-      "Ali",
-      "Hunt",
-      "Hussain",
-      "Campbell",
-      "Matthews",
-      "Owen",
-      "Palmer",
-      "Holmes",
-      "Mills",
-      "Barnes",
-      "Knight",
-      "Lloyd",
-      "Butler",
-      "Russell",
-      "Barker",
-      "Fisher",
-      "Stevens",
-      "Jenkins",
-      "Murray",
-      "Dixon",
-      "Harvey",
-      "Pearson",
-      "Graham"
-
-    ];
-
-
-    /* =====================================================
-       ELEMENT HELPER
-    ===================================================== */
-
-    const $ = (id) =>
-      document.getElementById(id);
-
-
-    /* =====================================================
-       CURRENT TYPE
-    ===================================================== */
-
-    let currentType = "thai";
-
-
-    /* =====================================================
-       RANDOM ITEM
-    ===================================================== */
-
-    function randomItem(array) {
-
-      return array[
-        Math.floor(
-          Math.random() *
-          array.length
-        )
-      ];
-
+      return nameArray[Math.floor(Math.random() * nameArray.length)];
     }
-
-
-    /* =====================================================
-       THAI ID CARD GENERATOR
-       13 DIGITS + CHECKSUM
-       ข้อมูลจำลองเท่านั้น
-    ===================================================== */
-
-    function generateThaiIdCard() {
-
-      const firstDigit =
-        Math.floor(
-          Math.random() * 8
-        ) + 1;
-
-
-      const digits = [
-        firstDigit
-      ];
-
-
-      for (
-        let i = 0;
-        i < 11;
-        i++
-      ) {
-
-        digits.push(
-          Math.floor(
-            Math.random() * 10
-          )
-        );
-
-      }
-
-
-      let sum = 0;
-
-
-      for (
-        let i = 0;
-        i < 12;
-        i++
-      ) {
-
-        sum +=
-          digits[i] *
-          (13 - i);
-
-      }
-
-
-      const mod =
-        sum % 11;
-
-
-      const checkDigit =
-        (11 - mod) % 10;
-
-
-      digits.push(
-        checkDigit
-      );
-
-
-      return digits.join("");
-
-    }
-
-
-    /* =====================================================
-       UPDATE TYPE BUTTON UI
-    ===================================================== */
-
-    function updateTypeButtons() {
-
-      const buttons =
-        document.querySelectorAll(
-          ".type-option"
-        );
-
-
-      buttons.forEach(
-        (button) => {
-
-          const isActive =
-            button.dataset.type ===
-            currentType;
-
-
-          button.classList.toggle(
-            "active",
-            isActive
-          );
-
-
-          button.setAttribute(
-            "aria-pressed",
-            String(isActive)
-          );
-
-        }
-      );
-
-    }
-
-
-    /* =====================================================
-       UPDATE UI LANGUAGE
-    ===================================================== */
-
-    function updateInterface() {
-
-      const isEnglish =
-        currentType === "english";
-
-
-      $("subtitle").textContent =
-        isEnglish
-
-          ? "Generate English names and surnames with simulated ID numbers"
-
-          : "สร้างชื่อไทย ชื่ออังกฤษ แบบสุ่ม พร้อมเลขบัตรประชาชนจำลอง";
-
-
-      $("nameTypeLabel").textContent =
-        isEnglish
-
-          ? "Name Type"
-
-          : "ประเภทชื่อ";
-
-
-      $("amountLabel").textContent =
-        isEnglish
-
-          ? "Number of Names"
-
-          : "จำนวนชื่อ";
-
-
-      $("generateBtn").textContent =
-        isEnglish
-
-          ? "✨ Generate Names"
-
-          : "✨ สุ่มชื่อ";
-
-
-      $("resultsTitle").textContent =
-        isEnglish
-
-          ? "Generated Names"
-
-          : "ชื่อที่สร้างขึ้น";
-
-
-      $("tip").textContent =
-        isEnglish
-
-          ? "💡 Tip: Choose a name type and generate up to 100 names. You can copy the name, surname, or simulated ID number instantly."
-
-          : "💡 เคล็ดลับ: เลือกประเภทชื่อที่ต้องการ แล้วกำหนดจำนวนได้สูงสุด 100 ชื่อ พร้อมคัดลอกชื่อ นามสกุล หรือเลขบัตรประชาชนจำลองได้ทันที";
-
-
-      const selector =
-        document.querySelector(
-          ".name-type-selector"
-        );
-
-
-      selector.setAttribute(
-        "aria-label",
-
-        isEnglish
-          ? "Name type"
-          : "ประเภทชื่อ"
-      );
-
-    }
-
-
-    /* =====================================================
-       GENERATE NAMES
-    ===================================================== */
 
     function generateNames() {
-
-      const type =
-        currentType;
-
-
-      const isEnglish =
-        type === "english";
-
-
-      const amount =
-        Math.min(
-          100,
-
-          Math.max(
-            1,
-
-            Number(
-              $("amount").value
-            ) || 1
-          )
-        );
-
-
-      $("amount").value =
-        amount;
-
-
-      const firstNames =
-        data[type].first;
-
-
-      const surnameList =
-        isEnglish
-          ? englishSurnames
-          : surnames;
-
-
-      const results =
-        $("results");
-
-
-      results.innerHTML = "";
-
-
-      const used =
-        new Set();
-
-
-      let attempts = 0;
-
-
-      const maxAttempts =
-        amount * 100;
-
-
-      while (
-        used.size < amount &&
-        attempts < maxAttempts
-      ) {
-
-        attempts++;
-
-
-        const firstName =
-          randomItem(
-            firstNames
-          );
-
-
-        const surname =
-          randomItem(
-            surnameList
-          );
-
-
-        const fullName =
-          `${firstName} ${surname}`;
-
-
-        if (
-          used.has(fullName)
-        ) {
-
-          continue;
-
-        }
-
-
-        used.add(
-          fullName
-        );
-
-
-        /* --------------------------------
-           Generate simulated ID
-        -------------------------------- */
-
-        const idCardNumber =
-          generateThaiIdCard();
-
-
-        /* --------------------------------
-           Card
-        -------------------------------- */
-
-        const card =
-          document.createElement(
-            "article"
-          );
-
-
-        card.className =
-          "name-card";
-
-
-        card.style.animationDelay =
-          `${Math.min(
-            used.size * 20,
-            400
-          )}ms`;
-
-
-        /* --------------------------------
-           Name Header
-        -------------------------------- */
-
-        const nameHeader =
-          document.createElement(
-            "div"
-          );
-
-
-        nameHeader.className =
-          "name-header";
-
-
-        /* --------------------------------
-           Name
-        -------------------------------- */
-
-        const info =
-          document.createElement(
-            "div"
-          );
-
-
-        info.className =
-          "name-info";
-
-
-        const name =
-          document.createElement(
-            "div"
-          );
-
-
-        name.className =
-          "name";
-
-
-        name.textContent =
-          fullName;
-
-
-        info.append(
-          name
-        );
-
-
-        /* --------------------------------
-           Action Buttons
-        -------------------------------- */
-
-        const actionButtons =
-          document.createElement(
-            "div"
-          );
-
-
-        actionButtons.className =
-          "action-buttons";
-
-
-        /* --------------------------------
-           Copy First Name
-        -------------------------------- */
-
-        const copyFirstBtn =
-          document.createElement(
-            "button"
-          );
-
-
-        copyFirstBtn.className =
-          "copy-btn";
-
-
-        copyFirstBtn.type =
-          "button";
-
-
-        copyFirstBtn.textContent =
-          isEnglish
-            ? "Copy Name"
-            : "คัดลอกชื่อ";
-
-
-        copyFirstBtn.addEventListener(
-          "click",
-          () =>
-            copyText(
-              firstName,
-              copyFirstBtn,
-              isEnglish,
-              "name"
-            )
-        );
-
-
-        /* --------------------------------
-           Copy Surname
-        -------------------------------- */
-
-        const copySurnameBtn =
-          document.createElement(
-            "button"
-          );
-
-
-        copySurnameBtn.className =
-          "copy-btn";
-
-
-        copySurnameBtn.type =
-          "button";
-
-
-        copySurnameBtn.textContent =
-          isEnglish
-            ? "Copy Surname"
-            : "คัดลอกนามสกุล";
-
-
-        copySurnameBtn.addEventListener(
-          "click",
-          () =>
-            copyText(
-              surname,
-              copySurnameBtn,
-              isEnglish,
-              "surname"
-            )
-        );
-
-
-        actionButtons.append(
-          copyFirstBtn,
-          copySurnameBtn
-        );
-
-
-        nameHeader.append(
-          info,
-          actionButtons
-        );
-
-
-        /* --------------------------------
-           ID Row
-        -------------------------------- */
-
-        const idRow =
-          document.createElement(
-            "div"
-          );
-
-
-        idRow.className =
-          "detail-row";
-
-
-        const idText =
-          document.createElement(
-            "span"
-          );
-
-
-        idText.innerHTML = `
-          ${
-            isEnglish
-              ? "ID Card:"
-              : "เลขบัตรประชาชน:"
-          }
-
-          <strong>
-            ${idCardNumber}
-          </strong>
+      const count = Math.min(20, Math.max(1, parseInt(countInput.value) || 2));
+      const names = currentType === 'thai' ? thaiNames : englishNames;
+
+      resultsContainer.innerHTML = `
+        <div class="results-header" style="grid-column: 1 / -1;">
+          <h2>ผลลัพธ์ 🎯</h2>
+          <span class="count-badge">${count}</span>
+        </div>
+      `;
+
+      emptyState.style.display = 'none';
+      resultsContainer.style.display = 'grid';
+
+      for (let i = 0; i < count; i++) {
+        const name = getRandomName(names);
+        const randomId = Math.random().toString(36).substr(2, 9);
+
+        const card = document.createElement('div');
+        card.className = 'name-card';
+        card.innerHTML = `
+          <div class="name-header">
+            <div class="name-info">
+              <div class="name">${name}</div>
+            </div>
+            <div class="action-buttons">
+              <button class="copy-btn" data-text="${name}">📋 คัดลอก</button>
+            </div>
+          </div>
+          <div class="detail-row">
+            <span><strong>ID:</strong> <strong>#${randomId}</strong></span>
+          </div>
         `;
 
+        card.querySelector('.copy-btn').addEventListener('click', function() {
+          const btn = this;
+          const text = btn.dataset.text;
 
-        /* --------------------------------
-           Copy ID Button
-        -------------------------------- */
+          navigator.clipboard.writeText(text).then(() => {
+            btn.classList.add('copied');
+            btn.textContent = '✓ คัดลอกแล้ว';
 
-        const copyIdBtn =
-          document.createElement(
-            "button"
-          );
+            setTimeout(() => {
+              btn.classList.remove('copied');
+              btn.textContent = '📋 คัดลอก';
+            }, 2000);
+          });
+        });
 
-
-        copyIdBtn.className =
-          "copy-btn";
-
-
-        copyIdBtn.type =
-          "button";
-
-
-        copyIdBtn.textContent =
-          isEnglish
-            ? "Copy ID"
-            : "คัดลอกเลขบัตร";
-
-
-        copyIdBtn.addEventListener(
-          "click",
-          () =>
-            copyText(
-              idCardNumber,
-              copyIdBtn,
-              isEnglish,
-              "idcard"
-            )
-        );
-
-
-        idRow.append(
-          idText,
-          copyIdBtn
-        );
-
-
-        /* --------------------------------
-           Append Card
-        -------------------------------- */
-
-        card.append(
-          nameHeader,
-          idRow
-        );
-
-
-        results.appendChild(
-          card
-        );
-
+        resultsContainer.appendChild(card);
       }
-
-
-      /* --------------------------------
-         Update Count
-      -------------------------------- */
-
-      $("countBadge")
-        .textContent =
-        `${used.size} ${
-          isEnglish
-            ? "names"
-            : "ชื่อ"
-        }`;
-
     }
 
-
-    /* =====================================================
-       COPY TEXT
-    ===================================================== */
-
-    async function copyText(
-      text,
-      button,
-      isEnglish,
-      type
-    ) {
-
-      try {
-
-        await navigator.clipboard
-          .writeText(text);
-
-      }
-
-      catch {
-
-        const textarea =
-          document.createElement(
-            "textarea"
-          );
-
-
-        textarea.value =
-          text;
-
-
-        textarea.style.position =
-          "fixed";
-
-
-        textarea.style.opacity =
-          "0";
-
-
-        document.body.appendChild(
-          textarea
-        );
-
-
-        textarea.select();
-
-
-        document.execCommand(
-          "copy"
-        );
-
-
-        textarea.remove();
-
-      }
-
-
-      const original =
-        button.textContent;
-
-
-      /* --------------------------------
-         Copied text
-      -------------------------------- */
-
-      if (isEnglish) {
-
-        if (
-          type === "name"
-        ) {
-
-          button.textContent =
-            "Name Copied ✓";
-
-        }
-
-        else if (
-          type === "surname"
-        ) {
-
-          button.textContent =
-            "Surname Copied ✓";
-
-        }
-
-        else if (
-          type === "idcard"
-        ) {
-
-          button.textContent =
-            "ID Copied ✓";
-
-        }
-
-      }
-
-      else {
-
-        if (
-          type === "name"
-        ) {
-
-          button.textContent =
-            "คัดลอกชื่อแล้ว ✓";
-
-        }
-
-        else if (
-          type === "surname"
-        ) {
-
-          button.textContent =
-            "คัดลอกนามสกุลแล้ว ✓";
-
-        }
-
-        else if (
-          type === "idcard"
-        ) {
-
-          button.textContent =
-            "คัดลอกเลขบัตรแล้ว ✓";
-
-        }
-
-      }
-
-
-      button.classList.add(
-        "copied"
-      );
-
-
-      setTimeout(
-        () => {
-
-          button.textContent =
-            original;
-
-
-          button.classList.remove(
-            "copied"
-          );
-
-        },
-
-        1400
-      );
-
-    }
-
-
-    /* =====================================================
-       TYPE BUTTON EVENTS
-    ===================================================== */
-
-    document
-      .querySelectorAll(
-        ".type-option"
-      )
-      .forEach(
-        (button) => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              const newType =
-                button.dataset.type;
-
-
-              if (
-                newType ===
-                currentType
-              ) {
-
-                return;
-
-              }
-
-
-              currentType =
-                newType;
-
-
-              updateTypeButtons();
-
-              updateInterface();
-
-              generateNames();
-
-            }
-          );
-
-        }
-      );
-
-
-    /* =====================================================
-       GENERATE BUTTON
-    ===================================================== */
-
-    $("generateBtn")
-      .addEventListener(
-        "click",
-        generateNames
-      );
-
-
-    /* =====================================================
-       AMOUNT ENTER
-    ===================================================== */
-
-    $("amount")
-      .addEventListener(
-        "keydown",
-        (event) => {
-
-          if (
-            event.key ===
-            "Enter"
-          ) {
-
-            generateNames();
-
-          }
-
-        }
-      );
-
-
-    /* =====================================================
-       VALIDATE AMOUNT
-    ===================================================== */
-
-    $("amount")
-      .addEventListener(
-        "change",
-        () => {
-
-          let value =
-            Number(
-              $("amount").value
-            ) || 1;
-
-
-          value =
-            Math.min(
-              100,
-              Math.max(
-                1,
-                value
-              )
-            );
-
-
-          $("amount").value =
-            value;
-
-        }
-      );
-
-
-    /* =====================================================
-       INITIAL GENERATION
-    ===================================================== */
-
-    updateTypeButtons();
-
-    updateInterface();
-
-    generateNames();
-
+    generateBtn.addEventListener('click', generateNames);
+    countInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') generateNames();
+    });
   </script>
-
 </body>
 
 </html>
